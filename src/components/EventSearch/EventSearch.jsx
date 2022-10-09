@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import EventSearchItem from './EventSearchItem';
+import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 
 
 function EventSearch() {
@@ -30,8 +31,8 @@ function EventSearch() {
                 <button type="submit">Search</button>
             </form>
 
-            <section>
-                <h4>Concert Search Results:</h4>
+            <h4>Concert Search Results:</h4>
+            <Grid container spacing={4}>
 
 
                 {searchResults.map(concert => (
@@ -39,7 +40,7 @@ function EventSearch() {
                     <EventSearchItem concert={concert} key={concert.id} />
 
                 ))}
-            </section>
+            </Grid>
         </>
     )
 }
