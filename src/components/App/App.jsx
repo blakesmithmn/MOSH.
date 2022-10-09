@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import EventSearch from '../EventSearch/EventSearch';
 
 import './App.css';
 
@@ -109,7 +110,13 @@ function App() {
               <LandingPage />
             }
           </Route>
-
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/search"
+          >
+            <EventSearch />
+          </Route>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
