@@ -44,15 +44,11 @@ function* fetchEventDetails(action) {
 
 }
 
-function* clearEventDetails() {
-
-}
 
 
 function* searchSaga() {
     yield takeEvery('SAGA_SEARCH_EVENTS', checkAPIEvents);
     yield takeEvery('SAGA_FETCH_DETAILS', fetchEventDetails);
-    yield takeEvery('SAGA_CLEAR_DETAILS', clearEventDetails);
 }
 
 export default searchSaga;

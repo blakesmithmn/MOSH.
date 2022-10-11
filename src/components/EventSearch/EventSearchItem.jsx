@@ -15,19 +15,16 @@ function EventSearchItem({ concert }) {
     const requestDetails = (concertID) => {
         // setEventID(concert)
         console.log(concertID);
-        try {
-            if (concertID !== 0) {
-                dispatch({
-                    type: 'SAGA_FETCH_DETAILS',
-                    payload: concertID
-                })
-            }
+        if (concertID !== 0) {
+            //     dispatch({
+            //         type: 'SAGA_FETCH_DETAILS',
+            //         payload: concertID
+            //     })
+            // }
 
             history.push(`/details/${concertID}`);
         }
-        catch (error) {
-            console.log('Error in Fetching Details', error);
-        }
+
     }
 
 

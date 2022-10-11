@@ -13,16 +13,18 @@ function EventDetails() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log('IN USE EFFECT & ID is:', params.id);
-    //     const eventID = eventDetails[0].id;
-
-    //     dispatch({
-    //         type: 'SAGA_FETCH_DETAILS',
-    //         payload: eventID
-    //     })
-
-    // }, []);
+    useEffect(() => {
+        console.log('IN USE EFFECT & ID is:', params.id);
+        dispatch({
+            type: 'SAGA_FETCH_DETAILS',
+            payload: params.id
+        })
+        return () => {
+            dispatch({
+                type: 'CLEAR_EVENT_DETAILS'
+            })
+        }
+    }, [params.id]);
 
     const handleBack = () => {
         history.push('/search');
