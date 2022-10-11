@@ -39,6 +39,9 @@ function EventSearchItem({ concert }) {
                     <Typography variant='body2' >
                         {concert.venue.name}
                     </Typography>
+                    <Typography variant='body2'>
+                        Average Ticket Price:{concert.stats.average_price}
+                    </Typography>
                 </CardContent>
                 <CardMedia
                     component="img"
