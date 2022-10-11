@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [zipcode, setZipcode] = useState(0);
+
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -15,6 +17,7 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        zipcode: zipcode,
       },
     });
   }; // end registerUser

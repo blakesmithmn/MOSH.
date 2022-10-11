@@ -5,7 +5,7 @@ import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, C
 
 
 function EventSearch() {
-    const searchResults = useSelector((store) => store.searchResults.searchResults);
+    const searchResults = useSelector((store) => store.events.searchResults);
 
 
     const [search, setSearch] = useState('');
@@ -26,6 +26,8 @@ function EventSearch() {
     return (
         <>
             <h1>Search</h1>
+            <p>RECOMMENDATIONS REQUESTS COULD BE DOPE FOR HOME PAGE</p>
+
             <form onSubmit={submitSearch}>
                 <input type="text" placeholder='event search' onChange={(event) => setSearch(event.target.value)} />
                 <button type="submit">Search</button>

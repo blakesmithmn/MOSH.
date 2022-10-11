@@ -8,24 +8,29 @@ import { useHistory } from 'react-router-dom';
 
 function EventSearchItem({ concert }) {
 
-    const [eventID, setEventID] = useState(0);
+    // const [eventID, setEventID] = useState(0);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const requestDetails = (concert) => {
+    const requestDetails = (concertID) => {
+        // setEventID(concert)
+        console.log(concertID);
+        try {
+            if (concertID !== 0) {
+                dispatch({
+                    type: 'SAGA_FETCH_DETAILS',
+                    payload: concertID
+                })
+            }
 
-        setEventID(concert)
-        console.log(eventID);
-        if (eventID !== 0) {
-            dispatch({
-                type: 'SAGA_FETCH_DETAILS',
-                payload: eventID
-            })
-
-
-            history.push(`/details/`);
+            history.push(`/details/${concertID}`);
+        }
+        catch (error) {
+            console.log('Error in Fetching Details', error);
         }
     }
+
+
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4} key={concert.id}>
@@ -60,7 +65,6 @@ function EventSearchItem({ concert }) {
                 </CardActions>
 
             </Card>
-            <h2>RECOMMENDATIONS REQUESTS COULD BE DOPE FOR HOME PAGE</h2>
         </Grid>
     )
 }

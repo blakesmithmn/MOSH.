@@ -34,7 +34,7 @@ function* fetchEventDetails(action) {
         })
         yield put({
             type: 'SET_DETAILS',
-            payload: detailsRes.data
+            payload: detailsRes.data[0]
         })
 
     }
@@ -44,10 +44,15 @@ function* fetchEventDetails(action) {
 
 }
 
+function* clearEventDetails() {
+
+}
+
 
 function* searchSaga() {
     yield takeEvery('SAGA_SEARCH_EVENTS', checkAPIEvents);
-    yield takeEvery('SAGA_FETCH_DETAILS', fetchEventDetails)
+    yield takeEvery('SAGA_FETCH_DETAILS', fetchEventDetails);
+    yield takeEvery('SAGA_CLEAR_DETAILS', clearEventDetails);
 }
 
 export default searchSaga;
