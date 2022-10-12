@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Spotify from 'react-spotify-embed';
 import Comments from '../Comments/Comments';
+const { DateTime } = require("luxon");
+
 
 function EventDetails() {
     const params = useParams();
@@ -35,27 +37,22 @@ function EventDetails() {
     const addToEvents = () => {
         const eventID = eventDetails.id;
         const title = eventDetails.title;
-        const performers = eventDetails.performers[0].name;
+        const artist = eventDetails.performers[0].name;
         const venue = eventDetails.venue.name;
         const datetime = eventDetails.datetime_local;
         const description = eventDetails.description;
         const tickets = eventDetails.url;
 
-
-        console.log(eventDetails.title);
-        console.log(eventDetails.performers[0].images.huge);
-        console.log(eventDetails.id);
         dispatch({
-            type: 'SAGA_ADD_TO_EVENTS',
+            type: 'SAGA_ADD_EVENT',
             payload: {
-                event_id: eventID,
-                event_name: title,
-                event_venue: venue,
-                event_artist: performers,
-                event_datetime: datetime,
-                event_description: description,
-                ticket_link: tickets,
-
+                id: eventID,
+                name: title,
+                venue: venue,
+                artist: artist,
+                datetime: datetime,
+                description: description,
+                tickets: tickets,
             }
         })
 
@@ -98,7 +95,7 @@ function EventDetails() {
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
                                     <ButtonGroup>
                                         <Button variant='contained'>INTERESTED</Button>
-                                        <Button variant='contained'>GOING</Button>
+                                        <Button variant='contained' onClick={addToEvents}>GOING</Button>
                                     </ButtonGroup>
                                 </CardActions>
                             </Card>
