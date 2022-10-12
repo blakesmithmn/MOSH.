@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Comments({ eventID }) {
+    const user = useSelector((store) => store.user);
 
     return (
         <Card>

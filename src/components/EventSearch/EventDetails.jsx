@@ -13,6 +13,7 @@ const { DateTime } = require("luxon");
 
 function EventDetails() {
     const params = useParams();
+    const user = useSelector((store) => store.user);
     const eventDetails = useSelector((store) => store.events.eventDetails);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function EventDetails() {
     }
 
     const addToEvents = () => {
+        const userID = user.id;
         const eventID = eventDetails.id;
         const title = eventDetails.title;
         const artist = eventDetails.performers[0].name;
@@ -53,6 +55,7 @@ function EventDetails() {
                 datetime: datetime,
                 description: description,
                 tickets: tickets,
+                userID: userID,
             }
         })
 
