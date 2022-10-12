@@ -13,6 +13,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const detailsRouter = require('./routes/details.router');
+const commentsRouter = require('./routes/comments.router');
 
 // Body parser middleware
 app.use(bodyParser.json());

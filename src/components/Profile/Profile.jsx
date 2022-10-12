@@ -10,8 +10,7 @@ function Profile() {
 
     return (
         <>
-
-            <h1>Welcome to your Profile: {user.username} </h1>
+            <h1>Welcome to your Profile: {user.first_name} </h1>
             <p>Current ZipCode: {user.zipcode}</p>
             <h2>About Me: </h2>
             <p>{user.about_me}</p>
