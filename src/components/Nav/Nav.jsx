@@ -37,7 +37,7 @@ function Nav() {
               Search
             </Link>
 
-            <Link className="navLink" to="/profile">
+            <Link className="navLink" to="/profile/${user.id}">
               Profile
             </Link>
 

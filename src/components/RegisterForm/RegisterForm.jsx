@@ -9,6 +9,9 @@ function RegisterForm() {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
   const [zipcode, setZipcode] = useState('');
 
   const errors = useSelector((store) => store.errors);
@@ -22,6 +25,8 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        firstName: firstName,
+        lastName: lastName,
         zipcode: zipcode,
       },
     });
@@ -39,6 +44,12 @@ function RegisterForm() {
             <Typography gutterBottom color="textSecondary" variant="body2" component="p">Complete this form to get started.</Typography>
             <form onSubmit={registerUser}>
               <Grid container spacing={2}>
+                <Grid xs={12} sm={4} item>
+                  <TextField required id="outlined-basic" variant="outlined" type="text" label="First Name" placeholder="Enter First Name" value={firstName} onChange={(event) => setFirstName(event.target.value)} fullWidth />
+                </Grid>
+                <Grid xs={12} sm={4} item>
+                  <TextField required id="outlined-basic" variant="outlined" type="text" label="Last Name" placeholder="Enter Last Name" value={lastName} onChange={(event) => setLastName(event.target.value)} fullWidth />
+                </Grid>
                 <Grid xs={12} item>
                   <TextField required id="outlined-basic" variant="outlined" type="text" label="Username" placeholder="Enter Username" value={username} onChange={(event) => setUsername(event.target.value)} fullWidth />
                 </Grid>
