@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 function RegisterForm() {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -24,10 +27,13 @@ function RegisterForm() {
     });
   }; // end registerUser
 
+  const handleBack = () => {
+    history.push('/search');
+  }
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6}>
-        <Card>
+        <Card className='CardForm'>
           <CardContent>
             <Typography gutterBottom variant="h5">Create an Account</Typography>
             <Typography gutterBottom color="textSecondary" variant="body2" component="p">Complete this form to get started.</Typography>
@@ -46,9 +52,10 @@ function RegisterForm() {
                 <Grid xs={12} sm={4} item>
                   <Button type="submit" variant="contained" fullWidth>Register</Button>
                 </Grid>
-                {/* <Grid xs={12} sm={4} item>
-                        <Button onClick={clearForm} variant="outlined" fullWidth>Clear Form</Button>
-                        </Grid> */}
+                <Grid xs={12} sm={4} item>
+                  <Button onClick={handleBack} variant="contained" color='error' fullWidth>Cancel</Button>
+                </Grid>
+
               </Grid>
             </form>
           </CardContent>

@@ -111,21 +111,21 @@ function App() {
               <LandingPage />
             }
           </Route>
-          <Route
+          <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact
             path="/search"
           >
             <EventSearch />
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact
             path="/details/:id"
           >
             <EventDetails />
-          </Route>
+          </ProtectedRoute>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

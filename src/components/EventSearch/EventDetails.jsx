@@ -29,7 +29,7 @@ function EventDetails() {
     }, [params.id]);
 
     const handleBack = () => {
-        history.push('/search');
+        history.push('/login');
     }
 
 
