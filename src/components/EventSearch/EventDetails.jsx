@@ -32,6 +32,36 @@ function EventDetails() {
         history.push('/login');
     }
 
+    const addToEvents = () => {
+        const eventID = eventDetails.id;
+        const title = eventDetails.title;
+        const performers = eventDetails.performers[0].name;
+        const venue = eventDetails.venue.name;
+        const datetime = eventDetails.datetime_local;
+        const description = eventDetails.description;
+        const tickets = eventDetails.url;
+
+
+        console.log(eventDetails.title);
+        console.log(eventDetails.performers[0].images.huge);
+        console.log(eventDetails.id);
+        dispatch({
+            type: 'SAGA_ADD_TO_EVENTS',
+            payload: {
+                event_id: eventID,
+                event_name: title,
+                event_venue: venue,
+                event_artist: performers,
+                event_datetime: datetime,
+                event_description: description,
+                ticket_link: tickets,
+
+            }
+        })
+
+    }
+
+
 
     return (
         <div>
