@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import EventSearchItem from './EventSearchItem';
 import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
+import './EventSearch.css'
 
 
 function EventSearch() {
     const searchResults = useSelector((store) => store.events.searchResults);
-
 
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
@@ -28,11 +28,24 @@ function EventSearch() {
             <h1>Search</h1>
             <p>RECOMMENDATIONS REQUESTS COULD BE DOPE FOR HOME PAGE</p>
 
-            <form onSubmit={submitSearch}>
-                <input type="text" placeholder='event search' onChange={(event) => setSearch(event.target.value)} />
-                <button type="submit">Search</button>
-            </form>
 
+            <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                    <form onSubmit={submitSearch} className='SearchBar'>
+                        <TextField
+                            id='outlined-basic'
+                            size='small'
+                            label='Search Events'
+                            variant='outlined'
+                            value={search}
+                            onChange={(event) => setSearch(event.target.value)}
+
+                        />
+                        <Button id='button' type='submit' variant='contained'>Search</Button>
+                    </form>
+                </Grid>
+
+            </Grid>
             <h4>Concert Search Results:</h4>
             <Grid container spacing={4}>
 

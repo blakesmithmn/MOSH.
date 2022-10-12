@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import EventSearchItem from './EventSearchItem';
-import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Spotify from 'react-spotify-embed';
+import Comments from '../Comments/Comments';
 
 function EventDetails() {
     const params = useParams();
@@ -40,11 +40,14 @@ function EventDetails() {
 
 
                 <>
-                    <Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={4} key={eventDetails.id}>
-                            <Card>
+                    <Grid container xs={12}>
+                        <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                            <Card className='CardDisplay'>
                                 <CardActions>
-                                    <Button onClick={handleBack}>BACK</Button>
+                                    <Button onClick={handleBack} color='error' edge='start' variant='contained'>
+                                        <ArrowBackIosNewIcon />
+                                        BACK
+                                    </Button>
                                 </CardActions>
                                 <CardContent>
                                     <Typography variant='h2'>{eventDetails.title}</Typography>
@@ -52,7 +55,7 @@ function EventDetails() {
                                 </CardContent>
                                 <CardMedia
                                     component="img"
-                                    image={eventDetails.performers[0].image}
+                                    image={eventDetails.performers[0].images.huge}
                                     alt={eventDetails.title}
                                     sx={{ width: .75 }}
                                 />
@@ -63,19 +66,28 @@ function EventDetails() {
                                 </CardContent>
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
+                                    <ButtonGroup>
+                                        <Button variant='contained'>INTERESTED</Button>
+                                        <Button variant='contained'>GOING</Button>
+                                    </ButtonGroup>
                                 </CardActions>
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={4} key={eventDetails.id}>
-                            <Card>
+                        <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id} direction='column'>
+                            <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                                <Card>
+                                    <CardContent>
+                                        <Typography variant='h2'>LINKS / SPOTIFY</Typography>
+                                        {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
+                                        <Spotify wide link="https://open.spotify.com/track/5ihDGnhQgMA0F0tk9fNLlA?si=4472348a63dd4f83" />
 
-                                <CardContent>
-                                    <Typography variant='h2'>COMMENTS</Typography>
-                                </CardContent>
-
-                            </Card>
-
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                                <Comments eventID={eventDetails.id} />
+                            </Grid>
                         </Grid>
                     </Grid>
                     <p>eventDetails ID for DETAILS: {eventDetails.id}</p>

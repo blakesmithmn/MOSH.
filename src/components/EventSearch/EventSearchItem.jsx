@@ -31,7 +31,7 @@ function EventSearchItem({ concert }) {
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4} key={concert.id}>
-            <Card key={concert.id} className='EventSearchItem'>
+            <Card key={concert.id} className='CardDisplay'>
                 <CardContent>
                     <Typography variant='h5'>
                         {concert.title}
@@ -61,7 +61,6 @@ function EventSearchItem({ concert }) {
 
                 <CardActions>
                     <Button onClick={() => { requestDetails(concert.id) }} variant='contained'>DETAILS</Button>
-                    <Button variant='contained'>ADD EVENT</Button>
                 </CardActions>
 
             </Card>

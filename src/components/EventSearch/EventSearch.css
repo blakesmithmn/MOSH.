@@ -1,7 +1,16 @@
-.EventSearchItem {
+.CardDisplay {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
+
+}
+
+.SearchBar {
+    text-align: center;
+}
+
+#outlined-basic {
+    margin-trim: 25px;
 }

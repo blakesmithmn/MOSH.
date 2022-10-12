@@ -15,7 +15,7 @@ router.get('/:query', (req, res) => {
     // PAGE NUMBER
     // ZIP CODE from USER
     // SEARCH Q
-    axios.get(`https://api.seatgeek.com/2/events?per_page=25&&page=1&geoip=55416&q=${search}&type=concert&client_id=${API_KEY}`)
+    axios.get(`https://api.seatgeek.com/2/events?per_page=100&&page=1&geoip=55416&q=${search}&type=concert&client_id=${API_KEY}`)
         .then((searchRes => {
             console.log('Search Results Are:', searchRes.data.events);
             res.send(searchRes.data.events)
