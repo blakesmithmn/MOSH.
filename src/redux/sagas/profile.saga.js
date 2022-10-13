@@ -43,21 +43,6 @@ function* updateProfile(action) {
         console.log('Error in updating profile', error);
     }
 }
-// function* updateStudent(action) {
-//     try {
-//         const studentToUpdate = action.payload
-//         yield axios({
-//             method: 'PUT',
-//             url: `/students/${studentToUpdate.id}`,
-//             data: studentToUpdate
-//         })
-//         yield put({
-//             type: 'FETCH_STUDENTS'
-//         })
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
 
 function* profileSaga() {
     yield takeLatest('FETCH_PROFILE_TO_EDIT', fetchProfileToEdit);

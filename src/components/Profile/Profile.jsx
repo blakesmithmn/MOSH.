@@ -32,10 +32,12 @@ function Profile() {
 
     return (
         <>
-            <Grid container spacing={4} >
+            <Grid container spacing={4}>
+                <Grid item xs={12} sm={6} md={6} lg={4}>
+                    <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
+                </Grid>
                 <Grid item xs={12} sm={6} md={6} lg={4}>
                     <Card>
-                        <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
                         <IconButton>
                             <AddCircleIcon color='secondary' />
                         </IconButton>

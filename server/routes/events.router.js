@@ -8,8 +8,31 @@ router.get('/', (req, res) => {
 });
 
 // GET route for user Profiles - grabbing their specific events 
-router.get('/id', (req, res) => {
+router.get('/:id', (req, res) => {
     // GET route code here
+    console.log(req.body);
+    const user = req.params.id;
+
+    const sqlQuery = `
+    SELECT * from "user"
+        JOIN users_events
+           ON "user".id = users_events.user_id
+        JOIN events
+           ON users_events.event_id = events.id
+        WHERE "user".id = $1;
+    `
+    const sqlValues = [user];
+
+    pool.query(sqlQuery, sqlValues)
+        .then(response => {
+            console.log('RESPONSE IS:', response.rows);
+            res.send(response.rows);
+        })
+        .catch(error => {
+            console.log('ERROR GETTING USER EVENTS', error);
+            res.sendStatus(500);
+        })
+
 });
 
 // POST TO EVENTS AND USERS_EVENTS

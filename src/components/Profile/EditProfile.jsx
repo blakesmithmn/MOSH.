@@ -17,12 +17,10 @@ function EditProfile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
         dispatch({
             type: 'FETCH_PROFILE_TO_EDIT',
             payload: params.id
         })
-
     }, [params.id])
 
     const history = useHistory();

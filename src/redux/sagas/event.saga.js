@@ -17,6 +17,22 @@ function* addEvent(action) {
     }
 }
 
+function* fetchUserEvents(action) {
+    try {
+        const userevents = yield axios({
+            method: 'GET',
+            url: `/api/events/${action.payload}`,
+        })
+        yield put({
+            type: 'SET_USER_EVENTS',
+            payload: userevents.data
+        })
+    }
+    catch (error) {
+        console.log('ERROR in GET USER EVENTS:', error);
+    }
+}
+
 
 
 
@@ -25,6 +41,7 @@ function* addEvent(action) {
 
 function* eventSaga() {
     yield takeLatest('SAGA_ADD_EVENT', addEvent);
+    yield takeLatest('SAGA_FETCH_USER_EVENTS', fetchUserEvents);
 }
 
 export default eventSaga;
