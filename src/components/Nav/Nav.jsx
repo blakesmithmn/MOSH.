@@ -37,7 +37,7 @@ function Nav() {
               Search
             </Link>
 
-            <Link className="navLink" to='/profile/:id'>
+            <Link className="navLink" to={`/profile/${user.id}`}>
               Profile
             </Link>
 
@@ -47,7 +47,7 @@ function Nav() {
 
 
       </div>
-    </div>
+    </div >
   );
 }
 

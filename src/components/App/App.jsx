@@ -138,7 +138,7 @@ function App() {
           <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/edit/profile/:id"
+            path="/profile/edit/:id"
           >
             <EditProfile />
           </ProtectedRoute>

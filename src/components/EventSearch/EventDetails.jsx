@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Spotify from 'react-spotify-embed';
 import Comments from '../Comments/Comments';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const { DateTime } = require("luxon");
 
 
@@ -102,11 +101,7 @@ function EventDetails() {
                                         <Button variant='contained' onClick={addToEvents}>GOING</Button>
                                     </ButtonGroup>
                                 </CardActions>
-                                <CardActions>
-                                    <IconButton>
-                                        <DeleteForeverIcon color='error' />
-                                    </IconButton>
-                                </CardActions>
+
                             </Card>
 
                         </Grid>
