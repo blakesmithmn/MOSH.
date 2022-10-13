@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import EventSearchItem from './EventSearchItem';
-import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Spotify from 'react-spotify-embed';
 import Comments from '../Comments/Comments';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const { DateTime } = require("luxon");
 
 
@@ -100,6 +101,11 @@ function EventDetails() {
                                         <Button variant='contained'>INTERESTED</Button>
                                         <Button variant='contained' onClick={addToEvents}>GOING</Button>
                                     </ButtonGroup>
+                                </CardActions>
+                                <CardActions>
+                                    <IconButton>
+                                        <DeleteForeverIcon color='error' />
+                                    </IconButton>
                                 </CardActions>
                             </Card>
 

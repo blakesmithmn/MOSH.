@@ -2,10 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// GET route for all Events users are currently attending - maybe for main page?
 router.get('/', (req, res) => {
+    // GET route code here
+});
+
+// GET route for user Profiles - grabbing their specific events 
+router.get('/id', (req, res) => {
     // GET route code here
 });
 

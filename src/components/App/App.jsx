@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import EventSearch from '../EventSearch/EventSearch';
 import EventDetails from '../EventSearch/EventDetails';
 import Profile from '../Profile/Profile';
+import EditProfile from '../Profile/EditProfile';
 
 import './App.css';
 
@@ -133,6 +134,13 @@ function App() {
             path="/profile/:id"
           >
             <Profile />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/edit/profile/:id"
+          >
+            <EditProfile />
           </ProtectedRoute>
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
