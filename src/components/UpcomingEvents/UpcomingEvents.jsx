@@ -7,6 +7,8 @@ import EventItem from './EventItem';
 function UpcomingEvents(userID) {
     const params = useParams();
     const user = useSelector((store) => store.user);
+    const events = useSelector((store) => store.events.userEvents);
+
     const dispatch = useDispatch();
     // needs a get dispatch for user specific events
 
@@ -27,26 +29,16 @@ function UpcomingEvents(userID) {
         <>
             <Typography variant='h4'>Upcoming Events:</Typography>
             <Grid container spacing={4}>
-                <Grid item xs={12} sm={6} md={6} lg={4} >
-
-                    <Card>
-                        <EventItem />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4} >
-
-                    <Card>
-                        <EventItem />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4} >
-
-                    <Card>
-                        <EventItem />
-                    </Card>
-                </Grid>
+                {events.map(event => {
+                    return (
+                        <Grid item xs={12} sm={6} md={6} lg={4} >
+                            <Card>
+                                <EventItem event={event} />
+                            </Card>
+                        </Grid>
+                    )
+                })}
             </Grid>
-
 
         </>
     )

@@ -14,7 +14,7 @@ const { DateTime } = require("luxon");
 function EventDetails() {
     const params = useParams();
     const user = useSelector((store) => store.user);
-    const eventDetails = useSelector((store) => store.events.eventDetails);
+    const eventDetails = useSelector((store) => store.search.eventDetails);
     const history = useHistory();
     const dispatch = useDispatch();
 
