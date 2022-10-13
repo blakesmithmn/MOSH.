@@ -29,11 +29,11 @@ function UpcomingEvents(userID) {
         <>
             <Typography variant='h4'>Upcoming Events:</Typography>
             <Grid container spacing={4}>
-                {events.map(event => {
+                {events.map(concert => {
                     return (
                         <Grid item xs={12} sm={6} md={6} lg={4} >
                             <Card>
-                                <EventItem event={event} />
+                                <EventItem concert={concert} />
                             </Card>
                         </Grid>
                     )

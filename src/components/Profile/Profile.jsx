@@ -15,11 +15,12 @@ function Profile() {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch({
-    //         type:
-    //     })
-    // }, []);
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_USER_PROFILE',
+            payload: params.id
+        })
+    }, []);
 
     const pushToEdit = (user) => {
         console.log(params);
