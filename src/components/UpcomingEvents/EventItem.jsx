@@ -29,6 +29,13 @@ function EventItem({ concert }) {
                     </Typography>
 
                 </CardContent>
+                <CardMedia
+                    component="img"
+                    image={concert.image}
+                    alt={concert.event_name}
+
+                    sx={{ width: .90 }}
+                />
                 {/* <CardMedia
                         component="img"
                         image={concert.performers[0].image}

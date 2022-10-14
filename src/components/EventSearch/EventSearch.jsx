@@ -7,6 +7,7 @@ import './EventSearch.css'
 
 function EventSearch() {
     const searchResults = useSelector((store) => store.search.searchResults);
+    const user = useSelector((store) => store.user);
 
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function EventSearch() {
         event.preventDefault();
         dispatch({
             type: 'SAGA_SEARCH_EVENTS',
-            payload: search
+            payload: { search: search, zipcode: user.zipcode }
         })
         setSearch('');
     }

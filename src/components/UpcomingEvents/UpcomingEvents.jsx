@@ -27,7 +27,7 @@ function UpcomingEvents(userID) {
     // on edit page maybe delete routes?
     return (
         <>
-            <Typography variant='h4'>Upcoming Events:</Typography>
+            <Typography variant='h4'>{user.first_name} here are your upcoming events:</Typography>
             <Grid container spacing={4}>
                 {events.map(concert => {
                     return (
