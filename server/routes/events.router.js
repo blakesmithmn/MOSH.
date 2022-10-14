@@ -121,5 +121,28 @@ router.post('/', (req, res) => {
         })
 })
 
+// DELETE ROUTE FOR USERS_EVENTS
+
+router.delete('/:id', (req, res) => {
+    console.log('UserID is:', req.query.userID);
+    console.log('EventID is:', req.query.concertID);
+
+    const sqlValues = [req.query.userID, req.query.concertID];
+    const sqlQuery = `
+    DELETE from "users_events"
+        WHERE "event_id" = $2 AND "user_id" = $1;
+    `
+
+    pool.query(sqlQuery, sqlValues)
+        .then(response => {
+            res.sendStatus(200)
+        })
+        .catch(error => {
+            console.log('ERROR IN DELETE:', error);
+            res.sendStatus(500);
+        })
+
+    // res.sendStatus(201);
+})
 
 module.exports = router;
