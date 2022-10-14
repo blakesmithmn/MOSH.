@@ -44,6 +44,7 @@ function EventDetails() {
         const datetime = eventDetails.datetime_local;
         const description = eventDetails.description;
         const tickets = eventDetails.url;
+        const image = eventDetails.performers[0].images.huge;
 
         dispatch({
             type: 'SAGA_ADD_EVENT',
@@ -56,6 +57,7 @@ function EventDetails() {
                 description: description,
                 tickets: tickets,
                 userID: userID,
+                image: image,
             }
         })
 
