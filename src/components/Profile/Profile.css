@@ -1,12 +1,18 @@
 .profileHeader {
     text-align: left;
     margin: 50px;
+
 }
 
-.profileHeader>div {
+.MuiAvatar-root {
+    margin-left: 75px;
+}
+
+
+/* .profileHeader>div {
     margin-left: 35px;
 }
 
 .zipcode {
     margin-right: 300px;
-}
+} */

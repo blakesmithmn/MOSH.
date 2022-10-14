@@ -34,14 +34,12 @@ function Profile() {
 
     return (
         <>
-            <Grid container spacing={2} className='profileHeader'>
+            <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
-                    <ButtonBase sx={{ width: 128, height: 128 }}>
-                        <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
-                    </ButtonBase>
+                    <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
                 </Grid>
-                <Grid item xs={12} sm container>
-                    <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs sm container>
+                    <Grid item xs container direction="column" spacing={4}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h3" component="div">
                                 {user.first_name} {user.last_name}
@@ -53,11 +51,11 @@ function Profile() {
                                 {user.about_me}
                             </Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid item >
                             <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs>
                         <Typography variant="subtitle1" component="div" className='zipcode'>
                             {user.zipcode}
                         </Typography>

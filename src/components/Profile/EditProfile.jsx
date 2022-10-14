@@ -43,50 +43,44 @@ function EditProfile() {
 
     const handleCancel = (event) => {
         event.preventDefault();
-        // history.push(`/profile/${user.id}`);
+        history.push(`/profile/${user.id}`);
         console.log('Changed Abandoned!');
-
     }
     return (
         <>
-            <h2>THIS IS THE EDIT PAGE</h2>
-            <Grid container spacing={4} >
-                <Grid item xs={12} sm={6} md={6} lg={4}>
-                    <Card >
-                        <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>BS</Avatar>
-                        <IconButton>
-                            <AddCircleIcon color='secondary' />
-                        </IconButton>
-                        {/* NEED INPUTS FOR EDITING FIRST AND LAST NAME */}
-                        <CardContent>
-                            <TextField size='small' placeholder='First Name' value={profile.first_name || ''} onChange={(event) => dispatch({ type: 'EDIT_FIRST_NAME', payload: event.target.value })}></TextField>
-                            <TextField size='small' placeholder='Last Name' value={profile.last_name || ''} onChange={(event) => dispatch({ type: 'EDIT_LAST_NAME', payload: event.target.value })}></TextField>
-                            {/* <Typography variant='h5'>{user.first_name} {user.last_name}</Typography> */}
-                        </CardContent>
-                        <CardActions>
+            <Grid container spacing={10} className='profileHeader' justifyContent="center">
+                <Grid item>
+                    <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
+                </Grid>
+                <Grid item xs sm container>
+                    <Grid item xs container direction="column" spacing={4}>
+                        <Grid item xs>
+                            <Typography gutterBottom variant="h3" component="div">
+                                <TextField size='small' placeholder='First Name' value={profile.first_name || ''} onChange={(event) => dispatch({ type: 'EDIT_FIRST_NAME', payload: event.target.value })}></TextField>
+                                <TextField size='small' placeholder='Last Name' value={profile.last_name || ''} onChange={(event) => dispatch({ type: 'EDIT_LAST_NAME', payload: event.target.value })}></TextField>
+                            </Typography>
+                            <Typography variant="subtitle2" gutterBottom>
+                                {user.username}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                <TextField size='small' placeholder='About Me' value={profile.about_me || ''} onChange={(event) => dispatch({ type: 'EDIT_ABOUT_ME', payload: event.target.value })} fullWidth></TextField>
+                            </Typography>
+                        </Grid>
+                        <Grid item >
                             <Button variant='contained' onClick={handleApply}>APPLY</Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4}>
-                    <Card>
-                        <TextField size='small' placeholder='ZipCode' value={profile.zipcode || ''} onChange={(event) => dispatch({ type: 'EDIT_ZIPCODE', payload: event.target.value })}></TextField>
+                            <Button variant='contained' color='secondary' onClick={handleCancel}>CANCEL</Button>
 
-                        <p>Current ZipCode: {user.zipcode}</p>
-                        <h2>About Me:  </h2>
-                        <TextField size='small' placeholder='About Me' value={profile.about_me || ''} onChange={(event) => dispatch({ type: 'EDIT_ABOUT_ME', payload: event.target.value })}></TextField>
-
-                        <p>{user.about_me}</p>
-                    </Card>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs>
+                        <Typography variant="subtitle1" component="div" className='zipcode'>
+                            <TextField size='small' placeholder='ZipCode' value={profile.zipcode || ''} onChange={(event) => dispatch({ type: 'EDIT_ZIPCODE', payload: event.target.value })}></TextField>
+                        </Typography>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <UpcomingEvents />
-                    <CardActions>
-                        <IconButton >
-                            <DeleteForeverIcon color='error' />
-                        </IconButton>
-                    </CardActions>
-                </Grid>
+            </Grid>
+            <Grid item xs={12}>
+                <UpcomingEvents />
             </Grid>
         </>
     )
