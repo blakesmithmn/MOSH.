@@ -1,8 +1,15 @@
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 function EventItem({ concert }) {
     const history = useHistory();
+    const user = useSelector((store) => store.user);
+    const dispatch = useDispatch();
+
     const requestDetails = (concertID) => {
         // setEventID(concert)
         console.log(concertID);
@@ -17,6 +24,16 @@ function EventItem({ concert }) {
         }
 
     }
+
+    const handleDelete = (concertID, userID) => {
+        console.log(concertID, userID);
+        const deleteInfo = { concertID, userID };
+        dispatch({
+            type: 'SAGA_DELETE_EVENT',
+            payload: deleteInfo
+        })
+    }
+
     return (
         <>
             <Card key={concert.id} className='CardDisplay'>
@@ -54,6 +71,9 @@ function EventItem({ concert }) {
 
                 <CardActions>
                     <Button onClick={() => { requestDetails(concert.API_key) }} variant='contained'>DETAILS</Button>
+                    <Button onClick={() => handleDelete(concert.id, user.id)} variant='contained' color='error'>
+                        <DeleteForeverIcon />
+                    </Button>
                 </CardActions>
 
             </Card>

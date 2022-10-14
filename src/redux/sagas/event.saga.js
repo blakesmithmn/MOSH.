@@ -33,7 +33,23 @@ function* fetchUserEvents(action) {
     }
 }
 
-
+function* deleteUserEvent(action) {
+    const userID = action.payload.userID
+    const concertID = action.payload.concertID
+    const params = { userID, concertID };
+    try {
+        const eventDelete = yield axios({
+            method: 'DELETE',
+            url: `/api/events/${userID}`,
+            params: params
+        })
+        // yield put({
+        //     type: 'SAGA_FETCH_USER_EVENTS'
+        // })
+    } catch (error) {
+        console.log('ERROR IN DELETE SAGA', error);
+    }
+}
 
 
 
@@ -42,6 +58,7 @@ function* fetchUserEvents(action) {
 function* eventSaga() {
     yield takeLatest('SAGA_ADD_EVENT', addEvent);
     yield takeLatest('SAGA_FETCH_USER_EVENTS', fetchUserEvents);
+    yield takeLatest('SAGA_DELETE_EVENT', deleteUserEvent)
 }
 
 export default eventSaga;
