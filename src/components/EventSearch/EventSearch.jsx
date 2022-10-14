@@ -26,12 +26,12 @@ function EventSearch() {
 
     return (
         <>
-            <h1>Search</h1>
-            <p>RECOMMENDATIONS REQUESTS COULD BE DOPE FOR HOME PAGE</p>
+            {/* <p>RECOMMENDATIONS REQUESTS COULD BE DOPE FOR HOME PAGE</p> */}
 
 
             <Grid container spacing={4}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                    <Typography variant='h4'>Search:</Typography>
                     <form onSubmit={submitSearch} className='SearchBar'>
                         <TextField
                             id='outlined-basic'
