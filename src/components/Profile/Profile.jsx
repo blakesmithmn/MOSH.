@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router'
+import './Profile.css';
 
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, ButtonBase, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -33,7 +34,7 @@ function Profile() {
 
     return (
         <>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className='profileHeader'>
                 <Grid item>
                     <ButtonBase sx={{ width: 128, height: 128 }}>
                         <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
@@ -57,7 +58,7 @@ function Profile() {
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <Typography variant="subtitle1" component="div">
+                        <Typography variant="subtitle1" component="div" className='zipcode'>
                             {user.zipcode}
                         </Typography>
                     </Grid>
