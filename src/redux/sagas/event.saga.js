@@ -43,9 +43,9 @@ function* deleteUserEvent(action) {
             url: `/api/events/${userID}`,
             params: params
         })
-        // yield put({
-        //     type: 'SAGA_FETCH_USER_EVENTS'
-        // })
+        yield put({
+            type: 'FETCH_USER'
+        })
     } catch (error) {
         console.log('ERROR IN DELETE SAGA', error);
     }
