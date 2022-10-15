@@ -122,7 +122,7 @@ function EventDetails() {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <p>eventDetails ID for DETAILS: {eventDetails.id}</p>
+                    <p>event id:{eventDetails.id}</p>
                     <p>ARTIST ID for DETAILS / EVENTUAL SPOTIFY LINK: {eventDetails.performers[0].id}</p>
                 </>
             }
