@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
     // SEARCH EVENTS TABLE FOR API_KEY TO AVOID DUPLICATES
     const sqlFindQuery = `
         SELECT * from "events"
-            WHERE events."API_key" = $1
+            WHERE events.id = $1
     
     `
     // VALUE TO FIND IN TABLE
@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
             } else {
                 // req.body should contain all necessary concert details
                 const insertEventQuery = `
-                INSERT INTO "events" ("API_key", "event_name", "event_venue", "event_artist", "event_datetime", "event_description", "ticket_link", "image")
+                INSERT INTO "events" ("id", "event_name", "event_venue", "event_artist", "event_datetime", "event_description", "ticket_link", "image")
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
                 RETURNING "id";
                 `

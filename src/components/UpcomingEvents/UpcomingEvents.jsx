@@ -31,7 +31,7 @@ function UpcomingEvents(userID) {
             <Grid container spacing={4}>
                 {events.map(concert => {
                     return (
-                        <Grid item xs={12} sm={6} md={6} lg={4} >
+                        <Grid item xs={12} sm={6} md={6} lg={4} key={concert.id}>
                             <Card>
                                 <EventItem concert={concert} />
                             </Card>

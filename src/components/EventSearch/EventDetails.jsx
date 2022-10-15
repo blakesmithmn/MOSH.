@@ -99,7 +99,7 @@ function EventDetails() {
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
                                     <ButtonGroup>
-                                        <Button variant='contained' onClick={addToEvents}>GOING</Button>
+                                        <Button variant='contained' onClick={addToEvents}>+ADD EVENT</Button>
                                     </ButtonGroup>
                                 </CardActions>
 
@@ -122,7 +122,7 @@ function EventDetails() {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <p>eventDetails ID for DETAILS: {eventDetails.id}</p>
+                    <p>event id:{eventDetails.id}</p>
                     <p>ARTIST ID for DETAILS / EVENTUAL SPOTIFY LINK: {eventDetails.performers[0].id}</p>
                 </>
             }
