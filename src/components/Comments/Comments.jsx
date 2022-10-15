@@ -26,7 +26,12 @@ function Comments({ eventID }) {
     // DISPATCH TO FETCH COMMENTS FROM USERS_COMMENTS
     // DISPATCH TO POST COMMENT TO USERS_COMMENTS
     const handleCommentPost = () => {
-        console.log('COMMENT TEXT AND EVENT ID', comment, eventID);
+        const userID = user.id;
+        console.log('COMMENT TEXT AND EVENT ID', userID, comment, eventID);
+        dispatch({
+            type: 'SAGA_ADD_COMMENT',
+            payload: { userID, comment, eventID }
+        })
         setComment('');
     }
     return (

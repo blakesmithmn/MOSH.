@@ -22,7 +22,7 @@ router.get('/:eventID', (req, res) => {
 			ON user_id = "user".id
 		JOIN "events" 
 			ON event_id = "events".id
-		WHERE "API_key" = $1;
+		WHERE "events".id = $1;
     `
     const sqlValues = [eventID];
 
@@ -37,11 +37,30 @@ router.get('/:eventID', (req, res) => {
         })
 
 });
-/**
- * POST route template
- */
-router.put('/', (req, res) => {
-    // POST route code here
+
+
+// POST ROUTER FOR USER_COMMENTS
+router.post('/', (req, res) => {
+    console.log(req.body);
+    const user = req.body.userID;
+    const comment = req.body.comment;
+    const event = req.body.eventID;
+
+    const sqlQuery = `
+        INSERT INTO "event_comments"
+            ("user_id", "comment", "event_id")
+        VALUES ($1,$2,$3)
+    `
+
+    const sqlValues = [user, comment, event];
+
+    pool.query(sqlQuery, sqlValues)
+        .then(postResponse => {
+            res.sendStatus(200);
+        })
+        .catch(postError => {
+            console.log('ERROR IN SERVERSIDE POST:', postError);
+        })
 });
 
 module.exports = router;

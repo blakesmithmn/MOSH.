@@ -70,7 +70,7 @@ function EventItem({ concert }) {
 
 
                 <CardActions>
-                    <Button onClick={() => { requestDetails(concert.API_key) }} variant='contained'>DETAILS</Button>
+                    <Button onClick={() => { requestDetails(concert.id) }} variant='contained'>DETAILS</Button>
                     <Button onClick={() => handleDelete(concert.id, user.id)} variant='contained' color='error'>
                         <DeleteForeverIcon />
                     </Button>
