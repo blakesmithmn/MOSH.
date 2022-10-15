@@ -25,14 +25,19 @@ function Comments({ eventID }) {
 
     // DISPATCH TO FETCH COMMENTS FROM USERS_COMMENTS
     // DISPATCH TO POST COMMENT TO USERS_COMMENTS
-    const handleCommentPost = () => {
+    const handleCommentPost = async () => {
         const userID = user.id;
         console.log('COMMENT TEXT AND EVENT ID', userID, comment, eventID);
-        dispatch({
+        await dispatch({
             type: 'SAGA_ADD_COMMENT',
             payload: { userID, comment, eventID }
         })
+        await dispatch({
+            type: 'SAGA_FETCH_COMMENTS',
+            payload: eventID
+        })
         setComment('');
+
     }
     return (
         <Card>

@@ -8,9 +8,6 @@ function* addComment(action) {
             url: '/api/comments',
             data: action.payload
         })
-        // yield put({
-        //     type: 'FETCH_'
-        // })
     }
     catch (error) {
         console.log('ERROR in POST new COMMENT:', error);
