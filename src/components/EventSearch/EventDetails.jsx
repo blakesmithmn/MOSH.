@@ -99,7 +99,7 @@ function EventDetails() {
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
                                     <ButtonGroup>
-                                        <Button variant='contained' onClick={addToEvents}>GOING</Button>
+                                        <Button variant='contained' onClick={addToEvents}>+ADD EVENT</Button>
                                     </ButtonGroup>
                                 </CardActions>
 

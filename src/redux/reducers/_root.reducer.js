@@ -5,6 +5,7 @@ import user from './user.reducer';
 import search from './search.reducer';
 import profile from './profile.reducer';
 import events from './userEvents.reducer';
+import comments from './comments.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   search,
   profile,
   events,
+  comments,
 });
 
 export default rootReducer;

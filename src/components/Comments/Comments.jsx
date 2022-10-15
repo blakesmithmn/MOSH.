@@ -14,13 +14,17 @@ function Comments({ eventID }) {
 
     useEffect(() => {
         console.log('COMMENTS LOADED');
+        dispatch({
+            type: 'SAGA_FETCH_COMMENTS',
+            payload: eventID
+        })
+        console.log(eventID)
     }, []);
 
     // DISPATCH TO FETCH COMMENTS FROM USERS_COMMENTS
-
     // DISPATCH TO POST COMMENT TO USERS_COMMENTS
     const handleCommentPost = () => {
-        console.log(comment)
+        console.log('COMMENT TEXT AND EVENT ID', comment, eventID);
         setComment('');
     }
     return (
