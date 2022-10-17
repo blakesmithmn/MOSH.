@@ -8,15 +8,20 @@ import { Link } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Spotify from 'react-spotify-embed';
 import Comments from '../Comments/Comments';
+import './EventSearch.css'
 const { DateTime } = require("luxon");
+
 
 
 function EventDetails() {
     const params = useParams();
     const user = useSelector((store) => store.user);
     const eventDetails = useSelector((store) => store.search.eventDetails);
+    const events = useSelector((store) => store.events.userEvents);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const [eventStatus, setEventStatus] = useState(false);
 
     useEffect(() => {
         console.log('IN USE EFFECT & ID is:', params.id);
@@ -24,11 +29,16 @@ function EventDetails() {
             type: 'SAGA_FETCH_DETAILS',
             payload: params.id
         })
+        dispatch({
+            type: 'SAGA_FETCH_USER_EVENTS',
+            payload: user.id
+        })
         return () => {
             dispatch({
                 type: 'CLEAR_EVENT_DETAILS'
             })
         }
+        checkEventStatus(events);
     }, [params.id]);
 
     const handleBack = () => {
@@ -61,9 +71,18 @@ function EventDetails() {
             }
         })
 
+
     }
 
+    const checkEventStatus = (events) => {
+        for (let event of events) {
+            if (Number(event.event_id) === Number(eventDetails.id)) {
+                console.log('MATCH FOUND')
+                setEventStatus(true);
+            }
 
+        }
+    }
 
     return (
         <div>
@@ -72,7 +91,7 @@ function EventDetails() {
 
 
                 <>
-                    <Grid container xs={12}>
+                    <Grid container >
                         <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
                             <Card className='CardDisplay'>
                                 <CardActions>
@@ -98,16 +117,36 @@ function EventDetails() {
                                 </CardContent>
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
-                                    <ButtonGroup>
-                                        <Button variant='contained' onClick={addToEvents}>+ADD EVENT</Button>
-                                    </ButtonGroup>
+                                    {eventStatus ?
+                                        <Button variant='contained' id='button' disabled>You're Going</Button>
+                                        :
+                                        <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
+                                    }
+                                    {/* needs conditional rendering so that users can't double add an event */}
+                                    {/* {events
+                                        .filter(({ id }) => id === eventDetails.id) 
+                                        .map(event => {
+                                            {event[0] ? 
+                                            
+                                                <Button variant='contained' onClick={addToEvents} id='button' disabled>+ADD EVENT</Button>
+
+                                            :
+                                            <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
+
+                                        
+                                        }
+                                            
+
+                                        })
+                                    } */}
+
                                 </CardActions>
 
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id} direction='column'>
-                            <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                        <Grid item xs={12} sm={6} md={6} lg={4} direction='column'>
+                            <Grid item xs={12} sm={6} md={6} lg={4} >
                                 <Card>
                                     <CardContent>
                                         <Typography variant='h2'>LINKS / SPOTIFY</Typography>
