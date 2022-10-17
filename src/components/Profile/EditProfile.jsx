@@ -8,7 +8,7 @@ import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions,
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightblue } from '@mui/material/colors';
+import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
 
 
 
@@ -99,7 +99,7 @@ function EditProfile() {
                         <FormControl>
                             <InputLabel>Color</InputLabel>
                             <Select
-                                value={profile.color}
+                                value={profile.color || ''}
                                 label="Pick a Color"
                                 onChange={(event) => dispatch({ type: 'EDIT_COLOR', payload: event.target.value })}
                                 required
