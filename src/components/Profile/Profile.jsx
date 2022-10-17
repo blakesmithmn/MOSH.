@@ -16,14 +16,16 @@ function Profile() {
     const params = useParams();
     const history = useHistory();
     const user = useSelector((store) => store.user);
+    const profile = useSelector((store) => store.userProfiles)
     const dispatch = useDispatch();
-    const userColor = user.color;
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_USER_PROFILE',
-            payload: params.id
+            payload: Number(params.id)
         })
-    }, []);
+        console.log('PARAMS ID IS:', Number(params.id))
+    }, [params.id]);
 
     const getUserColor = (user) => {
         switch (user.color) {
@@ -57,19 +59,19 @@ function Profile() {
         <>
             <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
-                    <Avatar sx={{ bgcolor: getUserColor(user), width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
+                    <Avatar sx={{ bgcolor: getUserColor(profile), width: 200, height: 200, fontSize: 100 }}>{profile.id && <p>{profile.first_name[0]}</p>} {profile.id && <p>{profile.last_name[0]}</p>}</Avatar>
                 </Grid>
                 <Grid item xs sm container>
                     <Grid item xs container direction="column" spacing={4}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h3" component="div">
-                                {user.first_name} {user.last_name}
+                                {profile.first_name} {profile.last_name}
                             </Typography>
                             <Typography variant="subtitle2" gutterBottom>
-                                {user.username}
+                                {profile.username}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {user.about_me}
+                                {profile.about_me}
                             </Typography>
                         </Grid>
                         <Grid item >
@@ -78,7 +80,7 @@ function Profile() {
                     </Grid>
                     <Grid item xs>
                         <Typography variant="subtitle1" component="div" className='zipcode'>
-                            {user.zipcode}
+                            {profile.zipcode}
                         </Typography>
                     </Grid>
                 </Grid>

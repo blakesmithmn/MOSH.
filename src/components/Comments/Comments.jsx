@@ -14,6 +14,7 @@ function Comments({ eventID }) {
     const comments = useSelector((store) => store.comments);
 
     const dispatch = useDispatch();
+    const history = useHistory();
     // local state to set the comment text
     const [comment, setComment] = useState('');
 
@@ -44,6 +45,11 @@ function Comments({ eventID }) {
         setComment('');
     }
 
+    const profilePush = (profileID) => {
+        console.log(profileID);
+        history.push(`/profile/${profileID}`)
+    }
+
     return (
         <Card>
             <CardContent>
@@ -51,7 +57,7 @@ function Comments({ eventID }) {
             </CardContent>
             <CardContent >
                 {comments.map(commentItem => (
-                    <div key={commentItem.id} >
+                    <div key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
                         {/* here is where i'm trying to set unique avatars per user - and use the color data they have tied to their profile */}
                         <Avatars username={commentItem} />
                         <Typography>{commentItem.comment}</Typography>

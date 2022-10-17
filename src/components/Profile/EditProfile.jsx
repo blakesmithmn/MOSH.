@@ -91,7 +91,7 @@ function EditProfile() {
                         </Grid>
                     </Grid>
                     <Grid item xs>
-                        <Typography variant="subtitle1" component="div" className='zipcode'>
+                        <Typography variant="subtitle1" className='zipcode'>
                             <TextField size='small' placeholder='ZipCode' value={profile.zipcode || ''} onChange={(event) => dispatch({ type: 'EDIT_ZIPCODE', payload: event.target.value })}></TextField>
                         </Typography>
                     </Grid>
