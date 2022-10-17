@@ -1,7 +1,7 @@
 .profileHeader {
     text-align: left;
-    margin: 50px;
-
+    margin-bottom: 50px;
+    padding-top: 50px;
 }
 
 .MuiAvatar-root {
@@ -13,12 +13,3 @@
     height: 200px;
     font-size: 100;
 }
-
-
-/* .profileHeader>div {
-    margin-left: 35px;
-}
-
-.zipcode {
-    margin-right: 300px;
-} */
