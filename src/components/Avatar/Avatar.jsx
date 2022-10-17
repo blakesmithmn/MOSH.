@@ -1,7 +1,7 @@
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, ButtonBase, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightblue } from '@mui/material/colors';
-
+import './Avatar.css'
 
 
 // the concept here is to be able to reference the 'user' information from the server
