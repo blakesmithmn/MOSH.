@@ -2,26 +2,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router'
 import './Profile.css';
-
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, ButtonBase, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { deepOrange, deepPurple, teal } from '@mui/material/colors';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+
+import Avatars from '../Avatar/Avatar';
+import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightblue } from '@mui/material/colors';
+
 
 function Profile() {
     const params = useParams();
     const history = useHistory();
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
-
+    const userColor = user.color;
     useEffect(() => {
         dispatch({
             type: 'FETCH_USER_PROFILE',
             payload: params.id
         })
     }, []);
+
+    const getUserColor = (user) => {
+        switch (user.color) {
+            case 'pink':
+                return pink[500];
+            case 'deepPurple':
+                return deepPurple[500];
+            case 'indigo':
+                return indigo[500];
+            case 'teal':
+                return teal[500];
+            case 'green':
+                return green[500];
+            case 'orange':
+                return orange[500];
+            case 'lightBlue':
+                return lightBlue[500];
+        }
+    };
 
     const pushToEdit = (user) => {
         console.log(params);
@@ -36,7 +57,7 @@ function Profile() {
         <>
             <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
-                    <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
+                    <Avatar sx={{ bgcolor: getUserColor(user), width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
                 </Grid>
                 <Grid item xs sm container>
                     <Grid item xs container direction="column" spacing={4}>
