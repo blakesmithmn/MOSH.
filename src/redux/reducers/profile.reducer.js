@@ -25,6 +25,8 @@ const profileReducer = (state = {}, action) => {
             return { ...state, about_me: action.payload };
         case 'EDIT_ZIPCODE':
             return { ...state, zipcode: action.payload };
+        case 'EDIT_COLOR':
+            return { ...state, color: action.payload };
         default:
             return state;
     }

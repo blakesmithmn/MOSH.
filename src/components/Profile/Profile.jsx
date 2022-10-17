@@ -9,13 +9,14 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { deepOrange, deepPurple, teal } from '@mui/material/colors';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import Avatars from '../Avatar/Avatar';
 
 function Profile() {
     const params = useParams();
     const history = useHistory();
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
-
+    const userColor = user.color;
     useEffect(() => {
         dispatch({
             type: 'FETCH_USER_PROFILE',
@@ -36,7 +37,8 @@ function Profile() {
         <>
             <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
-                    <Avatar sx={{ bgcolor: teal[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
+                    <Avatars username={user} id='profileAvatar' />
+                    <Avatar sx={{ bgcolor: userColor[500], width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
                 </Grid>
                 <Grid item xs sm container>
                     <Grid item xs container direction="column" spacing={4}>

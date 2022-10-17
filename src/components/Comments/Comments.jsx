@@ -5,16 +5,20 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import Avatars from '../Avatar/Avatar';
 
 function Comments({ eventID }) {
+    // user state - [{},{}]
     const user = useSelector((store) => store.user);
+    // comments state - [{},{}]
     const comments = useSelector((store) => store.comments);
 
     const dispatch = useDispatch();
-
+    // local state to set the comment text
     const [comment, setComment] = useState('');
 
     useEffect(() => {
+        // useEffect to fetch comment data from the server per event
         console.log('COMMENTS LOADED');
         dispatch({
             type: 'SAGA_FETCH_COMMENTS',
@@ -25,6 +29,7 @@ function Comments({ eventID }) {
 
     // DISPATCH TO FETCH COMMENTS FROM USERS_COMMENTS
     // DISPATCH TO POST COMMENT TO USERS_COMMENTS
+    // comment form component
     const handleCommentPost = async () => {
         const userID = user.id;
         console.log('COMMENT TEXT AND EVENT ID', userID, comment, eventID);
@@ -37,8 +42,8 @@ function Comments({ eventID }) {
             payload: eventID
         })
         setComment('');
-
     }
+
     return (
         <Card>
             <CardContent>
@@ -46,10 +51,11 @@ function Comments({ eventID }) {
             </CardContent>
             <CardContent >
                 {comments.map(commentItem => (
-                    <>
-                        <Avatar sx={{ bgcolor: deepPurple[500] }}>{commentItem.first_name[0]}{commentItem.last_name[0]}</Avatar>
+                    <div key={commentItem.id} >
+                        {/* here is where i'm trying to set unique avatars per user - and use the color data they have tied to their profile */}
+                        <Avatars username={commentItem} />
                         <Typography>{commentItem.comment}</Typography>
-                    </>
+                    </div>
                 ))}
             </CardContent>
             <CardContent>
