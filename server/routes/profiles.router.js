@@ -50,12 +50,13 @@ router.put('/:id', (req, res) => {
             first_name = $1,
             last_name = $2,
             zipcode = $3,
-            about_me = $4
+            about_me = $4,
+            color = $6
     WHERE
         id = $5
     `;
 
-    const sqlValues = [profile.first_name, profile.last_name, profile.zipcode, profile.about_me, profile.id];
+    const sqlValues = [profile.first_name, profile.last_name, profile.zipcode, profile.about_me, profile.id, profile.color];
 
 
     pool.query(sqlQuery, sqlValues)

@@ -5,10 +5,12 @@ import './Profile.css';
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, ButtonBase, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { deepOrange, deepPurple, teal } from '@mui/material/colors';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+
 import Avatars from '../Avatar/Avatar';
+import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightblue } from '@mui/material/colors';
+
 
 function Profile() {
     const params = useParams();
