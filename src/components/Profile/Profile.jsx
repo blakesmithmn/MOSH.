@@ -24,6 +24,10 @@ function Profile() {
             type: 'FETCH_USER_PROFILE',
             payload: Number(params.id)
         })
+        dispatch({
+            type: 'SAGA_FETCH_USER_EVENTS',
+            payload: Number(params.id)
+        })
         console.log('PARAMS ID IS:', Number(params.id))
     }, [params.id]);
 
@@ -87,7 +91,7 @@ function Profile() {
             </Grid>
 
             <Grid item xs={12}>
-                <UpcomingEvents />
+                <UpcomingEvents user={params.id} />
             </Grid>
 
         </>
