@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.get('/:eventID', (req, res) => {
     // GET route code here
-    console.log('EVENT ID IN COMMENTS GET IS:', req.params.eventID);
+    // console.log('EVENT ID IN COMMENTS GET IS:', req.params.eventID);
 
     const eventID = req.params.eventID;
 
@@ -28,7 +28,6 @@ router.get('/:eventID', (req, res) => {
 
     pool.query(sqlQuery, sqlValues)
         .then(response => {
-            console.log('RESPONSE IS:', response.rows);
             res.send(response.rows);
         })
         .catch(error => {

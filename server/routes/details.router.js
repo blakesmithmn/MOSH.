@@ -11,37 +11,35 @@ router.get('/:eventID', (req, res) => {
 
     axios.get(`https://api.seatgeek.com/2/events?id=${eventID}&client_id=${API_KEY}`)
         .then((searchRes => {
-            console.log('Search Results Are:', searchRes.data.events);
-            console.log(req.user.id)
-            const eventDetails = searchRes.data.events[0]
+            const eventDetails = searchRes.data.events[0];
             const userID = req.user.id;
-            const eventID = eventDetails.id
+            const eventID = eventDetails.id;
+            console.log('EVENT ID & USER ID ARE:', eventID, userID);
             // 1. Write a SQL query that will tell us if the eventID
             //   value exists in a row in users_events along with
             //   req.user.id = user_id AND
             //   status = true
             const sqlQuery = `
             SELECT "user_id", "event_id", "status" FROM "events"
-                JOIN "users_events"
-                    ON events.id = users_events.event_id
-                JOIN "user"
-                    ON users_events.id = "user".id
-            WHERE users_events.event_id = $1 AND users_events.user_id = $2 AND users_events.status = true;
+            JOIN "users_events"
+                ON events.id = users_events.event_id
+            JOIN "user"
+                ON users_events.id = "user".id
+        WHERE users_events.event_id = $1 AND users_events.user_id = $2 AND status=$3;
             `
-            const sqlValues = [eventID, userID];
+            const sqlValues = [eventID, userID, true];
 
             pool.query(sqlQuery, sqlValues)
                 .then(eventResponse => {
-                    console.log('EVENT RESPONSE IS', eventResponse.rows[0]);
+                    console.log('RESPONSE ARRAY FROM FETCH DETAILS SQLQUERY', eventResponse.rows);
                     const responseObject = eventResponse.rows;
-
                     if (responseObject.length >= 1) {
+                        console.log('TRUE');
                         eventDetails.isGoing = true;
                         res.send(eventDetails);
-
                     }
                     else {
-                        console.log('FALSE')
+                        console.log('FALSE');
                         eventDetails.isGoing = false;
                         res.send(eventDetails);
                     }

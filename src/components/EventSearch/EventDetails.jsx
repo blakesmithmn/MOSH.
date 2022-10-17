@@ -21,7 +21,7 @@ function EventDetails() {
 
     // REDUX STUFF
     const user = useSelector((store) => store.user);
-    const eventDetails = useSelector((store) => store.search.eventDetails);
+    const eventDetails = useSelector((store) => store.details);
     const events = useSelector((store) => store.events.userEvents);
 
     // LOCAL STATE
@@ -78,10 +78,10 @@ function EventDetails() {
             }
         })
 
-        await dispatch({
-            type: 'SAGA_FETCH_USER_EVENTS',
-            payload: userID
-        })
+        // await dispatch({
+        //     type: 'SAGA_FETCH_DETAILS',
+        //     payload: { eventID, userID }
+        // })
 
 
     }

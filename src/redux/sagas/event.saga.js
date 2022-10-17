@@ -1,17 +1,31 @@
 import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+
+// FUNCTION THAT TAKES API DATA AND ADDS IT TO THE DB
+
+// NEEDS CONDITIONAL RENDERING SO USERS CANNOT ADD THE SAME EVENT TWICE
 function* addEvent(action) {
+    let userID = action.payload.userID;
+    let eventID = action.payload.id;
     try {
+        // POSTS TO EVENTS.ROUTER
         const newEvent = yield axios({
             method: 'POST',
             url: '/api/events',
             data: action.payload
         })
         console.log(action.payload);
+
+        // HERE IS WHERE I AM HAVING ISSUES CURRENTLY
+        // THIS INFO COMES FROM EVENTS.ROUTER
+        // NEEDS TO GRAB EVENT STATUS AGAIN ... 
+        // TRIED RUNNING FETCH DETAILS WITH NO LUCK
+        // FETCH DETAILS LIVES IN SEARCH SAGA
+
         yield put({
             type: 'SAGA_FETCH_DETAILS',
-            payload: { eventID: action.payload.id, userID: action.payload.userID }
+            payload: eventID
         })
     }
     catch (error) {

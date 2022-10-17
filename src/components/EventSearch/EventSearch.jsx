@@ -6,7 +6,7 @@ import './EventSearch.css'
 
 
 function EventSearch() {
-    const searchResults = useSelector((store) => store.search.searchResults);
+    const searchResults = useSelector((store) => store.search);
     const user = useSelector((store) => store.user);
 
     const [search, setSearch] = useState('');

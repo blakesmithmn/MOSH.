@@ -25,7 +25,6 @@ router.get('/:id', (req, res) => {
 
     pool.query(sqlQuery, sqlValues)
         .then(response => {
-            console.log('RESPONSE IS:', response.rows);
             res.send(response.rows);
         })
         .catch(error => {
