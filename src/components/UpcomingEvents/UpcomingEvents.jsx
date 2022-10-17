@@ -4,9 +4,9 @@ import { useParams } from 'react-router'
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton } from '@mui/material';
 import EventItem from './EventItem';
 
-function UpcomingEvents(userID) {
+function UpcomingEvents(user) {
     const params = useParams();
-    const user = useSelector((store) => store.user);
+    // const user = useSelector((store) => store.user);
     const events = useSelector((store) => store.events.userEvents);
 
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ function UpcomingEvents(userID) {
     // on edit page maybe delete routes?
     return (
         <>
-            <Typography variant='h4'>{user.first_name} here are your upcoming events:</Typography>
+            <Typography variant='h4'>Upcoming Events:</Typography>
             <Grid container spacing={4}>
                 {events.map(concert => {
                     return (
