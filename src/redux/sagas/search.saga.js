@@ -39,7 +39,7 @@ function* fetchEventDetails(action) {
         })
         yield put({
             type: 'SET_DETAILS',
-            payload: detailsRes.data[0]
+            payload: detailsRes.data
         })
 
     }

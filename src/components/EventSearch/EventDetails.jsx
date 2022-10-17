@@ -14,15 +14,20 @@ const { DateTime } = require("luxon");
 
 
 function EventDetails() {
+    // NECESSARY VARIABLES
     const params = useParams();
-    const user = useSelector((store) => store.user);
-    const eventDetails = useSelector((store) => store.search.eventDetails);
-    const events = useSelector((store) => store.events.userEvents);
     const history = useHistory();
     const dispatch = useDispatch();
 
+    // REDUX STUFF
+    const user = useSelector((store) => store.user);
+    const eventDetails = useSelector((store) => store.search.eventDetails);
+    const events = useSelector((store) => store.events.userEvents);
+
+    // LOCAL STATE
     const [eventStatus, setEventStatus] = useState(false);
 
+    // USE EFFECT TO FETCH EVENT DETAILS / USER EVENTS / CLEAR EVENT DETAILS ON UNLOAD
     useEffect(() => {
         console.log('IN USE EFFECT & ID is:', params.id);
         dispatch({
@@ -38,13 +43,15 @@ function EventDetails() {
                 type: 'CLEAR_EVENT_DETAILS'
             })
         }
-        checkEventStatus(events);
     }, [params.id]);
 
+    // FUNCTION TO RETURN TO USER PAGE
     const handleBack = () => {
-        history.push('/login');
+        history.push('/user');
     }
 
+    // FUNCTION THAT DISPATCHES TO ADD AN EVENT TO EVENT TABLE
+    // AS WELL AS USERS_EVENTS 
     const addToEvents = () => {
         const userID = user.id;
         const eventID = eventDetails.id;
@@ -74,6 +81,7 @@ function EventDetails() {
 
     }
 
+
     const checkEventStatus = (events) => {
         for (let event of events) {
             if (Number(event.event_id) === Number(eventDetails.id)) {
@@ -87,8 +95,6 @@ function EventDetails() {
     return (
         <div>
             {eventDetails.id &&
-
-
 
                 <>
                     <Grid container >
@@ -117,7 +123,7 @@ function EventDetails() {
                                 </CardContent>
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
-                                    {eventStatus ?
+                                    {eventDetails.isGoing ?
                                         <Button variant='contained' id='button' disabled>You're Going</Button>
                                         :
                                         <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
