@@ -3,14 +3,16 @@ import axios from 'axios';
 
 function* addEvent(action) {
     try {
-        yield axios({
+        const newEvent = yield axios({
             method: 'POST',
             url: '/api/events',
             data: action.payload
         })
-        // yield put({
-        //     type: 'FETCH_'
-        // })
+        console.log(action.payload);
+        yield put({
+            type: 'SAGA_FETCH_DETAILS',
+            payload: { eventID: action.payload.id, userID: action.payload.userID }
+        })
     }
     catch (error) {
         console.log('ERROR in POST new EVENT:', error);

@@ -12,7 +12,9 @@ router.get('/:eventID', (req, res) => {
     axios.get(`https://api.seatgeek.com/2/events?id=${eventID}&client_id=${API_KEY}`)
         .then((searchRes => {
             console.log('Search Results Are:', searchRes.data.events);
+            console.log(req.user.id)
             const eventDetails = searchRes.data.events[0]
+            const userID = req.user.id;
             const eventID = eventDetails.id
             // 1. Write a SQL query that will tell us if the eventID
             //   value exists in a row in users_events along with
@@ -24,9 +26,9 @@ router.get('/:eventID', (req, res) => {
                     ON events.id = users_events.event_id
                 JOIN "user"
                     ON users_events.id = "user".id
-            WHERE users_events.event_id = $1;
+            WHERE users_events.event_id = $1 AND users_events.user_id = $2 AND users_events.status = true;
             `
-            const sqlValues = [eventID];
+            const sqlValues = [eventID, userID];
 
             pool.query(sqlQuery, sqlValues)
                 .then(eventResponse => {

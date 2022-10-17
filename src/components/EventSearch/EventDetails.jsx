@@ -52,7 +52,7 @@ function EventDetails() {
 
     // FUNCTION THAT DISPATCHES TO ADD AN EVENT TO EVENT TABLE
     // AS WELL AS USERS_EVENTS 
-    const addToEvents = () => {
+    const addToEvents = async () => {
         const userID = user.id;
         const eventID = eventDetails.id;
         const title = eventDetails.title;
@@ -63,7 +63,7 @@ function EventDetails() {
         const tickets = eventDetails.url;
         const image = eventDetails.performers[0].images.huge;
 
-        dispatch({
+        await dispatch({
             type: 'SAGA_ADD_EVENT',
             payload: {
                 id: eventID,
@@ -78,19 +78,14 @@ function EventDetails() {
             }
         })
 
+        await dispatch({
+            type: 'SAGA_FETCH_USER_EVENTS',
+            payload: userID
+        })
+
 
     }
 
-
-    const checkEventStatus = (events) => {
-        for (let event of events) {
-            if (Number(event.event_id) === Number(eventDetails.id)) {
-                console.log('MATCH FOUND')
-                setEventStatus(true);
-            }
-
-        }
-    }
 
     return (
         <div>
