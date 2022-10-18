@@ -2,11 +2,16 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addComment(action) {
+    let eventID = action.payload;
     try {
-        yield axios({
+        const newComment = yield axios({
             method: 'POST',
             url: '/api/comments',
             data: action.payload
+        })
+        yield put({
+            type: 'SAGA_FETCH_COMMENTS',
+            payload: newComment.data.event_id
         })
     }
     catch (error) {

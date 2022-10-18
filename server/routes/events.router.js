@@ -72,6 +72,7 @@ router.post('/', (req, res) => {
                 pool.query(insertUsersEventsQuery, [event.userID, createdEventKey, true])
                     .then(result => {
                         //Now that both are done, send back success!
+                        console.log('RESULT IS:', result);
                         res.sendStatus(201);
                     }).catch(err => {
                         // catch for second query

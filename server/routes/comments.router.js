@@ -17,7 +17,7 @@ router.get('/:eventID', (req, res) => {
     const eventID = req.params.eventID;
 
     const sqlQuery = `
-    SELECT * from "event_comments"
+    SELECT "user_id", "event_id", "comment", "username", "first_name","last_name","color" from "event_comments"
 		JOIN "user"
 			ON user_id = "user".id
 		JOIN "events" 
@@ -49,13 +49,17 @@ router.post('/', (req, res) => {
         INSERT INTO "event_comments"
             ("user_id", "comment", "event_id")
         VALUES ($1,$2,$3)
+        RETURNING "event_id";
     `
 
     const sqlValues = [user, comment, event];
 
     pool.query(sqlQuery, sqlValues)
         .then(postResponse => {
-            res.sendStatus(200);
+            const reseventID = postResponse.rows[0]
+            console.log('RES EVENT ID IS:', reseventID);
+            res.send(reseventID);
+            // res.sendStatus(200);
         })
         .catch(postError => {
             console.log('ERROR IN SERVERSIDE POST:', postError);
