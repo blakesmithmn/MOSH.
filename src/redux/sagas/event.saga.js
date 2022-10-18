@@ -27,6 +27,10 @@ function* addEvent(action) {
             type: 'SAGA_FETCH_DETAILS',
             payload: eventID
         })
+        yield put({
+            type: 'SAGA_FETCH_USER_EVENTS',
+            payload: userID
+        })
     }
     catch (error) {
         console.log('ERROR in POST new EVENT:', error);

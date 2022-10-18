@@ -19,21 +19,28 @@ router.get('/:eventID', (req, res) => {
             //   value exists in a row in users_events along with
             //   req.user.id = user_id AND
             //   status = true
+            //     const sqlQuery = `
+            //     SELECT "user_id", "event_id", "status" FROM "events"
+            //     JOIN "users_events"
+            //         ON events.id = users_events.event_id
+            //     JOIN "user"
+            //         ON users_events.id = "user".id
+            // WHERE users_events.event_id = $1 AND users_events.user_id = $2;
+            //     `
+
             const sqlQuery = `
-            SELECT "user_id", "event_id", "status" FROM "events"
-            JOIN "users_events"
-                ON events.id = users_events.event_id
-            JOIN "user"
-                ON users_events.id = "user".id
-        WHERE users_events.event_id = $1 AND users_events.user_id = $2 AND status=$3;
+            SELECT "user_id", "event_id", "status" FROM "users_events"
+                JOIN "user"
+                    ON users_events.user_id = "user".id
+            WHERE users_events.event_id = $1 AND users_events.user_id = $2;
             `
-            const sqlValues = [eventID, userID, true];
+            const sqlValues = [eventID, userID];
 
             pool.query(sqlQuery, sqlValues)
                 .then(eventResponse => {
                     console.log('RESPONSE ARRAY FROM FETCH DETAILS SQLQUERY', eventResponse.rows);
-                    const responseObject = eventResponse.rows;
-                    if (responseObject.length >= 1) {
+                    const responseArray = eventResponse.rows;
+                    if (responseArray.length >= 1) {
                         console.log('TRUE');
                         eventDetails.isGoing = true;
                         res.send(eventDetails);

@@ -13,6 +13,7 @@ router.get('/:id', (req, res) => {
     console.log(req.body);
     const user = req.params.id;
 
+    // SQL to grab a user's events
     const sqlQuery = `
     SELECT * from "user"
         JOIN users_events
