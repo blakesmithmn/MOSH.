@@ -8,7 +8,7 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
+    <div className="nav" sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
       <Link to="/home">
         <h2 className="nav-title">MOSH.</h2>
       </Link>
