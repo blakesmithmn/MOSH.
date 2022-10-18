@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
-
+import MobileProfile from './MobileProfile';
 import Avatars from '../Avatar/Avatar';
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
 
@@ -66,11 +66,12 @@ function Profile() {
 
     return (
         <>
-            <Grid container spacing={10} className='profileHeader' justifyContent="center">
-                <Grid item>
+            <MobileProfile user={user} />
+            <Grid container spacing={10} className='profileHeader' justifyContent="center" >
+                <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'inline' } }}>
                     <Avatar sx={{ bgcolor: getUserColor(profile), width: 200, height: 200, fontSize: 100 }}>{profile.id && <p>{profile.first_name[0]}</p>} {profile.id && <p>{profile.last_name[0]}</p>}</Avatar>
                 </Grid>
-                <Grid item xs sm container>
+                <Grid item xs sm container sx={{ display: { xs: 'none', sm: 'none', md: 'inline' } }}>
                     <Grid item xs container direction="column" spacing={4}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h3" component="div">
@@ -83,14 +84,14 @@ function Profile() {
                                 {profile.about_me}
                             </Typography>
                         </Grid>
+                        <Grid item xs>
+                            <Typography variant="subtitle1" component="div" className='zipcode'>
+                                {profile.zipcode}
+                            </Typography>
+                        </Grid>
                         <Grid item >
                             <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
                         </Grid>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1" component="div" className='zipcode'>
-                            {profile.zipcode}
-                        </Typography>
                     </Grid>
                 </Grid>
             </Grid>

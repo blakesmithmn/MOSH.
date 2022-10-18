@@ -5,11 +5,22 @@
 }
 
 .MuiAvatar-root {
-    margin-left: 75px;
+    margin-left: 100px;
 }
 
-.profileAvatar {
-    width: 200px;
-    height: 200px;
-    font-size: 100;
+
+
+.MobileHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 25px;
+}
+
+#ProfileAvatar {
+    margin-left: 75px;
 }

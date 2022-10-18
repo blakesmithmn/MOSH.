@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import './MobileNav.css'
 
-import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 // MUI IMPORTS
-
+import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import EventIcon from '@mui/icons-material/Event';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 function MobileNav() {
+    const user = useSelector((store) => store.user);
     const [value, setValue] = useState(0);
+    const history = useHistory();
+
 
 
     return (
@@ -20,12 +25,10 @@ function MobileNav() {
                 setValue(newValue);
             }}
             sx={{ display: { xs: 'block', sm: 'block', md: 'none', position: 'fixed', bottom: 0, left: 0, right: 0, color: 'primary' } }}
-
         >
-            <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-            <BottomNavigationAction label="My Events" icon={<EventIcon />} />
-            <BottomNavigationAction label="Search" icon={<SearchIcon />} />
-            <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} />
+            <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={(event) => { history.push('/user') }} />
+            <BottomNavigationAction label="Search" icon={<SearchIcon />} onClick={(event) => { history.push('/search') }} />
+            <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} onClick={(event) => { history.push(`/profile/${user.id}`) }} />
         </BottomNavigation>
     )
 }

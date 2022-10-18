@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router'
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import MobileEdit from './MobileEdit';
 // MUI IMPORTS
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -66,6 +67,7 @@ function EditProfile() {
     }
     return (
         <>
+            <MobileEdit />
             <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
                     <Avatar sx={{ bgcolor: getUserColor(user), width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
