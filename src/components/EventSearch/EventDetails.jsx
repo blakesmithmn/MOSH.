@@ -78,10 +78,10 @@ function EventDetails() {
             }
         })
 
-        // await dispatch({
-        //     type: 'SAGA_FETCH_DETAILS',
-        //     payload: { eventID, userID }
-        // })
+        await dispatch({
+            type: 'SAGA_FETCH_COMMENTS',
+            payload: eventID
+        })
 
 
     }
