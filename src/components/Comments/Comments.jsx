@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar } from '@mui/material';
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, Stack } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -57,11 +57,14 @@ function Comments({ eventID }) {
             </CardContent>
             <CardContent>
                 {comments.map(commentItem => (
-                    <div key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
+                    <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
                         {/* here is where i'm trying to set unique avatars per user - and use the color data they have tied to their profile */}
+
                         <Avatars username={commentItem} />
+
                         <Typography component='span'>{commentItem.comment}</Typography>
-                    </div>
+
+                    </Stack>
                 ))}
             </CardContent>
             <CardContent>
