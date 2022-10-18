@@ -8,21 +8,35 @@ import { Link } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Spotify from 'react-spotify-embed';
 import Comments from '../Comments/Comments';
+import './EventSearch.css'
 const { DateTime } = require("luxon");
 
 
+
 function EventDetails() {
+    // NECESSARY VARIABLES
     const params = useParams();
-    const user = useSelector((store) => store.user);
-    const eventDetails = useSelector((store) => store.search.eventDetails);
     const history = useHistory();
     const dispatch = useDispatch();
 
+    // REDUX STUFF
+    const user = useSelector((store) => store.user);
+    const eventDetails = useSelector((store) => store.details);
+    const events = useSelector((store) => store.events.userEvents);
+
+    // LOCAL STATE
+    const [eventStatus, setEventStatus] = useState(false);
+
+    // USE EFFECT TO FETCH EVENT DETAILS / USER EVENTS / CLEAR EVENT DETAILS ON UNLOAD
     useEffect(() => {
         console.log('IN USE EFFECT & ID is:', params.id);
         dispatch({
             type: 'SAGA_FETCH_DETAILS',
             payload: params.id
+        })
+        dispatch({
+            type: 'SAGA_FETCH_USER_EVENTS',
+            payload: user.id
         })
         return () => {
             dispatch({
@@ -31,11 +45,14 @@ function EventDetails() {
         }
     }, [params.id]);
 
+    // FUNCTION TO RETURN TO USER PAGE
     const handleBack = () => {
-        history.push('/login');
+        history.push('/user');
     }
 
-    const addToEvents = () => {
+    // FUNCTION THAT DISPATCHES TO ADD AN EVENT TO EVENT TABLE
+    // AS WELL AS USERS_EVENTS 
+    const addToEvents = async () => {
         const userID = user.id;
         const eventID = eventDetails.id;
         const title = eventDetails.title;
@@ -46,7 +63,7 @@ function EventDetails() {
         const tickets = eventDetails.url;
         const image = eventDetails.performers[0].images.huge;
 
-        dispatch({
+        await dispatch({
             type: 'SAGA_ADD_EVENT',
             payload: {
                 id: eventID,
@@ -61,18 +78,21 @@ function EventDetails() {
             }
         })
 
-    }
+        // await dispatch({
+        //     type: 'SAGA_FETCH_DETAILS',
+        //     payload: { eventID, userID }
+        // })
 
+
+    }
 
 
     return (
         <div>
             {eventDetails.id &&
 
-
-
                 <>
-                    <Grid container xs={12}>
+                    <Grid container >
                         <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
                             <Card className='CardDisplay'>
                                 <CardActions>
@@ -98,16 +118,36 @@ function EventDetails() {
                                 </CardContent>
                                 <CardActions>
                                     <Button href={eventDetails.url} target="_blank" variant='contained'>TICKETS</Button>
-                                    <ButtonGroup>
-                                        <Button variant='contained' onClick={addToEvents}>+ADD EVENT</Button>
-                                    </ButtonGroup>
+                                    {eventDetails.isGoing ?
+                                        <Button variant='contained' id='button' disabled>You're Going</Button>
+                                        :
+                                        <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
+                                    }
+                                    {/* needs conditional rendering so that users can't double add an event */}
+                                    {/* {events
+                                        .filter(({ id }) => id === eventDetails.id) 
+                                        .map(event => {
+                                            {event[0] ? 
+                                            
+                                                <Button variant='contained' onClick={addToEvents} id='button' disabled>+ADD EVENT</Button>
+
+                                            :
+                                            <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
+
+                                        
+                                        }
+                                            
+
+                                        })
+                                    } */}
+
                                 </CardActions>
 
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id} direction='column'>
-                            <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                        <Grid item xs={12} sm={6} md={6} lg={4} direction='column'>
+                            <Grid item xs={12} sm={6} md={6} lg={4} >
                                 <Card>
                                     <CardContent>
                                         <Typography variant='h2'>LINKS / SPOTIFY</Typography>

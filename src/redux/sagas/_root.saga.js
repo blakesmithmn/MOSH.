@@ -6,6 +6,7 @@ import searchSaga from './search.saga'
 import eventSaga from './event.saga';
 import profileSaga from './profile.saga';
 import commentsSaga from './comments.saga';
+import detailsSaga from './details.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     eventSaga(),
     profileSaga(),
     commentsSaga(),
+    detailsSaga(),
   ]);
 }

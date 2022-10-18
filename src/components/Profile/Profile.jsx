@@ -29,6 +29,11 @@ function Profile() {
             payload: Number(params.id)
         })
         console.log('PARAMS ID IS:', Number(params.id))
+        return () => {
+            dispatch({
+                type: 'CLEAR_PROFILE_DETAILS'
+            })
+        }
     }, [params.id]);
 
     const getUserColor = (user) => {

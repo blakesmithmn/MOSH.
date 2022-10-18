@@ -55,12 +55,12 @@ function Comments({ eventID }) {
             <CardContent>
                 <Typography variant='h2'>COMMENTS</Typography>
             </CardContent>
-            <CardContent >
+            <CardContent>
                 {comments.map(commentItem => (
                     <div key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
                         {/* here is where i'm trying to set unique avatars per user - and use the color data they have tied to their profile */}
                         <Avatars username={commentItem} />
-                        <Typography>{commentItem.comment}</Typography>
+                        <Typography component='span'>{commentItem.comment}</Typography>
                     </div>
                 ))}
             </CardContent>

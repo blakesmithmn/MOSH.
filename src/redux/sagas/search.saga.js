@@ -28,32 +28,11 @@ function* checkAPIEvents(action) {
 }
 
 
-function* fetchEventDetails(action) {
-    const eventID = action.payload;
-
-    console.log('EVENT ID IS:', eventID);
-    try {
-        const detailsRes = yield axios({
-            method: 'GET',
-            url: `/api/details/${eventID}`
-        })
-        yield put({
-            type: 'SET_DETAILS',
-            payload: detailsRes.data[0]
-        })
-
-    }
-    catch (error) {
-        console.log('Error in API Search:', error);
-    }
-
-}
 
 
 
 function* searchSaga() {
     yield takeEvery('SAGA_SEARCH_EVENTS', checkAPIEvents);
-    yield takeEvery('SAGA_FETCH_DETAILS', fetchEventDetails);
 }
 
 export default searchSaga;
