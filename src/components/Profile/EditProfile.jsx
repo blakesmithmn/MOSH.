@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router'
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import MobileEdit from './MobileEdit';
 // MUI IMPORTS
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -68,6 +69,57 @@ function EditProfile() {
         <>
             <Grid container spacing={10} className='profileHeader' justifyContent="center">
                 <Grid item>
+                    <Avatar sx={{ bgcolor: getUserColor(profile), width: 200, height: 200, fontSize: 100 }}>{profile.id && <p>{profile.first_name[0]}</p>} {profile.id && <p>{profile.last_name[0]}</p>}</Avatar>
+                </Grid>
+                <Grid item xs container spacing={4}>
+                    <Grid item xs={6}>
+                        <TextField size='small' placeholder='First Name' value={profile.first_name || ''} onChange={(event) => dispatch({ type: 'EDIT_FIRST_NAME', payload: event.target.value })}></TextField>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField size='small' placeholder='Last Name' value={profile.last_name || ''} onChange={(event) => dispatch({ type: 'EDIT_LAST_NAME', payload: event.target.value })}></TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField size='small' placeholder='About Me' value={profile.about_me || ''} onChange={(event) => dispatch({ type: 'EDIT_ABOUT_ME', payload: event.target.value })} fullWidth></TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField size='small' placeholder='ZipCode' value={profile.zipcode || ''} onChange={(event) => dispatch({ type: 'EDIT_ZIPCODE', payload: event.target.value })}></TextField>
+                    </Grid>
+                    <Grid item xs={12} sm={7}>
+                        <FormControl fullWidth>
+                            <InputLabel>Color</InputLabel>
+                            <Select
+                                value={profile.color || ''}
+                                label="Pick a Color"
+                                onChange={(event) => dispatch({ type: 'EDIT_COLOR', payload: event.target.value })}
+                                required
+
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={'pink'}>Pink</MenuItem>
+                                <MenuItem value={'deepPurple'}>Purple</MenuItem>
+                                <MenuItem value={'indigo'}>Indigo</MenuItem>
+                                <MenuItem value={'teal'}>Teal</MenuItem>
+                                <MenuItem value={'green'}>Green</MenuItem>
+                                <MenuItem value={'orange'}>Orange</MenuItem>
+                                <MenuItem value={'lightBlue'}>Blue</MenuItem>
+                            </Select>
+                            <FormHelperText>Pick a Color for your Avatar</FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button variant='contained' onClick={handleApply}>APPLY</Button>
+                        <Button variant='contained' color='secondary' onClick={handleCancel}>CANCEL</Button>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+
+
+            {/* <MobileEdit />
+            <Grid container spacing={10} className='profileHeader' justifyContent="center">
+                <Grid item>
                     <Avatar sx={{ bgcolor: getUserColor(user), width: 200, height: 200, fontSize: 100 }}>{user.first_name[0]}{user.last_name[0]}</Avatar>
                 </Grid>
                 <Grid item xs sm container>
@@ -122,7 +174,7 @@ function EditProfile() {
             </Grid>
             <Grid item xs={12}>
                 <UpcomingEvents />
-            </Grid>
+            </Grid> */}
         </>
     )
 }

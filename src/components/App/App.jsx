@@ -23,6 +23,7 @@ import EventSearch from '../EventSearch/EventSearch';
 import EventDetails from '../EventSearch/EventDetails';
 import Profile from '../Profile/Profile';
 import EditProfile from '../Profile/EditProfile';
+import MobileNav from '../MobileNav/MobileNav';
 
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -55,6 +56,7 @@ function App() {
       <Router>
         <div>
           <Nav />
+
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -164,6 +166,8 @@ function App() {
             </Route>
           </Switch>
           <Footer />
+          <MobileNav />
+
         </div>
       </Router>
     </ThemeProvider>

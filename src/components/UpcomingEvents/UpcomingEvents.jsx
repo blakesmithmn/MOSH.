@@ -12,12 +12,12 @@ function UpcomingEvents(user) {
     const dispatch = useDispatch();
     // needs a get dispatch for user specific events
 
-    useEffect(() => {
-        dispatch({
-            type: 'SAGA_FETCH_USER_EVENTS',
-            payload: user.id
-        })
-    }, []);
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'SAGA_FETCH_USER_EVENTS',
+    //         // payload: user.id
+    //     })
+    // }, []);
 
     // SQL join from Users to USERS _ EVENTS
     // MAP EVENT ITEMS FROM ARRAY OF UPCOMING EVENTS
