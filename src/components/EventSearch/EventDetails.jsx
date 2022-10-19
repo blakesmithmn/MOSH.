@@ -192,7 +192,12 @@ function EventDetails() {
                                             : null
                                         }
                                         {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
-                                        <Spotify wide link={links.spotify || 'https://open.spotify.com/artist'} />
+                                        {links.spotify ?
+                                            <Spotify wide link={links.spotify || 'https://open.spotify.com/artist'} />
+
+                                            : null
+                                        }
+
 
                                     </CardContent>
                                 </Card>
