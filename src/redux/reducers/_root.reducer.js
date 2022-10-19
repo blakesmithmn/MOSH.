@@ -8,7 +8,7 @@ import events from './userEvents.reducer';
 import comments from './comments.reducer';
 import userProfiles from './userProfile.reducer'
 import details from './details.reducer'
-import links from './links.reducer'
+import links from './sociallinks.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
