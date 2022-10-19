@@ -45,6 +45,9 @@ function EventDetails() {
             dispatch({
                 type: 'CLEAR_EVENT_DETAILS'
             })
+            // dispatch({
+            //     type: 'CLEAR_SPOTIFY_DETAILS'
+            // })
         }
     }, [params.id]);
 
@@ -155,7 +158,7 @@ function EventDetails() {
                                     <CardContent>
                                         <Typography variant='h2'>LINKS / SPOTIFY</Typography>
                                         {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
-                                        <Spotify wide link={spotify.url || ''} />
+                                        <Spotify wide link={spotify.url || 'https://open.spotify.com/artist'} />
 
                                     </CardContent>
                                 </Card>
