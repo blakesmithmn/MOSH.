@@ -8,6 +8,7 @@ import events from './userEvents.reducer';
 import comments from './comments.reducer';
 import userProfiles from './userProfile.reducer'
 import details from './details.reducer'
+import links from './links.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   comments,
   userProfiles,
   details,
+  links,
 });
 
 export default rootReducer;

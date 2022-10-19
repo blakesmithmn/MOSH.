@@ -20,7 +20,6 @@ function Comments({ eventID }) {
 
     useEffect(() => {
         // useEffect to fetch comment data from the server per event
-        console.log('COMMENTS LOADED');
         dispatch({
             type: 'SAGA_FETCH_COMMENTS',
             payload: eventID
@@ -31,16 +30,13 @@ function Comments({ eventID }) {
     // DISPATCH TO FETCH COMMENTS FROM USERS_COMMENTS
     // DISPATCH TO POST COMMENT TO USERS_COMMENTS
     // comment form component
-    const handleCommentPost = async () => {
+    const handleCommentPost = async (event) => {
+        event.preventDefault();
         const userID = user.id;
         console.log('COMMENT TEXT AND EVENT ID', userID, comment, eventID);
         await dispatch({
             type: 'SAGA_ADD_COMMENT',
             payload: { userID, comment, eventID }
-        })
-        await dispatch({
-            type: 'SAGA_FETCH_COMMENTS',
-            payload: eventID
         })
         setComment('');
     }
@@ -58,7 +54,6 @@ function Comments({ eventID }) {
             <CardContent>
                 {comments.map(commentItem => (
                     <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
-                        {/* here is where i'm trying to set unique avatars per user - and use the color data they have tied to their profile */}
 
                         <Avatars username={commentItem} />
 
@@ -68,8 +63,10 @@ function Comments({ eventID }) {
                 ))}
             </CardContent>
             <CardContent>
-                <TextField size='small' placeholder='Write a comment ...' fullWidth onChange={(event) => setComment(event.target.value)} value={comment}></TextField>
-                <Button variant='contained' color='secondary' onClick={handleCommentPost}>Submit</Button>
+                <form onSubmit={handleCommentPost}>
+                    <TextField size='small' placeholder='Write a comment ...' fullWidth onChange={(event) => setComment(event.target.value)} value={comment}></TextField>
+                    <Button variant='contained' color='secondary' type='submit'>Submit</Button>
+                </form>
             </CardContent>
         </Card>
 

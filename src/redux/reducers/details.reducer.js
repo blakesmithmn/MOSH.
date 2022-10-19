@@ -1,5 +1,4 @@
 
-
 const eventDetails = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DETAILS':

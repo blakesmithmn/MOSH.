@@ -18,6 +18,32 @@ function* fetchEventDetails(action) {
             type: 'SET_DETAILS',
             payload: detailsRes.data
         })
+        yield put({
+            type: 'SAGA_FETCH_LINKS',
+            payload: detailsRes.data.performers[0].name
+        })
+
+    }
+    catch (error) {
+        console.log('Error in API Search:', error);
+    }
+
+}
+
+function* fetchLinks(action) {
+    const artist = action.payload
+    console.log('ARTIST TO FETCH IS', action.payload)
+    try {
+        const linksRes = yield axios({
+            method: 'GET',
+            url: `/api/links/${artist}`
+        })
+        console.log(linksRes);
+        yield put({
+            type: 'SET_LINKS',
+            payload: linksRes.data
+        })
+
 
     }
     catch (error) {
@@ -28,6 +54,8 @@ function* fetchEventDetails(action) {
 
 function* detailsSaga() {
     yield takeLatest('SAGA_FETCH_DETAILS', fetchEventDetails);
+    yield takeLatest('SAGA_FETCH_LINKS', fetchLinks);
+
 }
 
 export default detailsSaga;
