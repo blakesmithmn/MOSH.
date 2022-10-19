@@ -3,9 +3,9 @@ import { combineReducers } from 'redux';
 
 const spotifyReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_SPOTIFY':
+        case 'SET_LINKS':
             return action.payload;
-        case 'CLEAR_SPOTIFY_DETAILS':
+        case 'CLEAR_LINKS':
             return {};
         default:
             return state;

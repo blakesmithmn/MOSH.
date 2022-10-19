@@ -19,7 +19,7 @@ function* fetchEventDetails(action) {
             payload: detailsRes.data
         })
         yield put({
-            type: 'SAGA_FETCH_SPOTIFY',
+            type: 'SAGA_FETCH_LINKS',
             payload: detailsRes.data.performers[0].name
         })
 
@@ -30,18 +30,18 @@ function* fetchEventDetails(action) {
 
 }
 
-function* fetchSpotify(action) {
+function* fetchLinks(action) {
     const artist = action.payload
     console.log('ARTIST TO FETCH IS', action.payload)
     try {
-        const spotifyRes = yield axios({
+        const linksRes = yield axios({
             method: 'GET',
-            url: `/api/spotify/${artist}`
+            url: `/api/links/${artist}`
         })
-        console.log(spotifyRes);
+        console.log(linksRes);
         yield put({
-            type: 'SET_SPOTIFY',
-            payload: spotifyRes.data
+            type: 'SET_LINKS',
+            payload: linksRes.data
         })
 
 
@@ -54,7 +54,7 @@ function* fetchSpotify(action) {
 
 function* detailsSaga() {
     yield takeLatest('SAGA_FETCH_DETAILS', fetchEventDetails);
-    yield takeLatest('SAGA_FETCH_SPOTIFY', fetchSpotify);
+    yield takeLatest('SAGA_FETCH_LINKS', fetchLinks);
 
 }
 
