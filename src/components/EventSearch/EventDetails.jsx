@@ -38,6 +38,7 @@ function EventDetails() {
             type: 'SAGA_FETCH_USER_EVENTS',
             payload: user.id
         })
+
         return () => {
             dispatch({
                 type: 'CLEAR_EVENT_DETAILS'
@@ -152,7 +153,7 @@ function EventDetails() {
                                     <CardContent>
                                         <Typography variant='h2'>LINKS / SPOTIFY</Typography>
                                         {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
-                                        <Spotify wide link="https://open.spotify.com/track/5ihDGnhQgMA0F0tk9fNLlA?si=4472348a63dd4f83" />
+                                        <Spotify wide link="https://open.spotify.com/artist/4NHQUGzhtTLFvgF5SZesLK" />
 
                                     </CardContent>
                                 </Card>

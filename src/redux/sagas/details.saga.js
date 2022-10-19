@@ -18,6 +18,35 @@ function* fetchEventDetails(action) {
             type: 'SET_DETAILS',
             payload: detailsRes.data
         })
+        yield put({
+            type: 'SAGA_FETCH_SPOTIFY',
+            payload: detailsRes.data.performers[0].name
+        })
+
+    }
+    catch (error) {
+        console.log('Error in API Search:', error);
+    }
+
+}
+
+function* fetchSpotify(action) {
+    const artist = action.payload
+    console.log('ARTIST TO FETCH IS', action.payload)
+    try {
+        const spotifyRes = yield axios({
+            method: 'GET',
+            url: `/api/spotify/${artist}`
+        })
+        console.log(spotifyRes);
+        // yield put({
+        //     type: 'SET_DETAILS',
+        //     payload: detailsRes.data
+        // })
+        // yield put({
+        //     type: 'SAGA_FETCH_SPOTIFY',
+        //     payload: detailsRes.data.performers[0].name
+        // })
 
     }
     catch (error) {
@@ -28,6 +57,8 @@ function* fetchEventDetails(action) {
 
 function* detailsSaga() {
     yield takeLatest('SAGA_FETCH_DETAILS', fetchEventDetails);
+    yield takeLatest('SAGA_FETCH_SPOTIFY', fetchSpotify);
+
 }
 
 export default detailsSaga;

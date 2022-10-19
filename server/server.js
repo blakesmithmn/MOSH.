@@ -16,6 +16,7 @@ const detailsRouter = require('./routes/details.router');
 const commentsRouter = require('./routes/comments.router');
 const eventsRouter = require('./routes/events.router');
 const profilesRouter = require('./routes/profiles.router');
+const spotifyRouter = require('./routes/spotify.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use('/api/details', detailsRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/profiles', profilesRouter);
+app.use('/api/spotify', spotifyRouter);
 
 // Serve static files
 app.use(express.static('build'));
