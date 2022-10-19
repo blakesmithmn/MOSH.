@@ -22,6 +22,8 @@ function EventDetails() {
     // REDUX STUFF
     const user = useSelector((store) => store.user);
     const eventDetails = useSelector((store) => store.details);
+    const spotify = useSelector((store) => store.spotify);
+
     const events = useSelector((store) => store.events.userEvents);
 
     // LOCAL STATE
@@ -153,7 +155,7 @@ function EventDetails() {
                                     <CardContent>
                                         <Typography variant='h2'>LINKS / SPOTIFY</Typography>
                                         {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
-                                        <Spotify wide link="https://open.spotify.com/artist/4NHQUGzhtTLFvgF5SZesLK" />
+                                        <Spotify wide link={spotify.url || ''} />
 
                                     </CardContent>
                                 </Card>

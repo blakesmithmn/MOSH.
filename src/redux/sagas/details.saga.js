@@ -39,14 +39,11 @@ function* fetchSpotify(action) {
             url: `/api/spotify/${artist}`
         })
         console.log(spotifyRes);
-        // yield put({
-        //     type: 'SET_DETAILS',
-        //     payload: detailsRes.data
-        // })
-        // yield put({
-        //     type: 'SAGA_FETCH_SPOTIFY',
-        //     payload: detailsRes.data.performers[0].name
-        // })
+        yield put({
+            type: 'SET_SPOTIFY',
+            payload: spotifyRes.data
+        })
+
 
     }
     catch (error) {
