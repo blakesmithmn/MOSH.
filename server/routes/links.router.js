@@ -13,9 +13,9 @@ router.get('/:artist', (req, res) => {
 
     axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${search}&size=1&apikey=${CLIENT_KEY}`)
         .then((searchRes => {
-            const spotifyURL = searchRes.data._embedded.events[0]._embedded.attractions[0].externalLinks.spotify[0]
+            // const spotifyURL = searchRes.data._embedded.events[0]._embedded.attractions[0].externalLinks.spotify[0]
             const linkResults = searchRes.data._embedded.events[0]._embedded.attractions[0].externalLinks;
-            console.log('SPOTIFY URL IS:', spotifyURL);
+            // console.log('SPOTIFY URL IS:', spotifyURL);
             console.log('EXTERNAL LINKS:', linkResults);
             const links = {};
             if (linkResults.youtube) {

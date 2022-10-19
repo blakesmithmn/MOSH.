@@ -1,15 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import EventSearchItem from './EventSearchItem';
-import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Spotify from 'react-spotify-embed';
+
+import EventSearchItem from './EventSearchItem';
 import Comments from '../Comments/Comments';
 import './EventSearch.css'
+
+// MISC
+import Spotify from 'react-spotify-embed';
 const { DateTime } = require("luxon");
+
+// MUI IMPORTS
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 
 
@@ -156,7 +165,32 @@ function EventDetails() {
                             <Grid item xs={12} sm={6} md={6} lg={4} >
                                 <Card>
                                     <CardContent>
-                                        <Typography variant='h2'>LINKS / SPOTIFY</Typography>
+                                        <Typography variant='h3'>LINKS & SPOTIFY</Typography>
+                                        {links.homepage ?
+                                            <IconButton href={links.homepage} target="_blank" variant='contained'>
+                                                <InsertLinkIcon />
+                                            </IconButton>
+                                            : null
+                                        }
+
+                                        {links.instagram ?
+                                            <IconButton href={links.instagram} target="_blank">
+                                                <InstagramIcon />
+                                            </IconButton>
+                                            : null
+                                        }
+                                        {links.twitter ?
+                                            <IconButton href={links.twitter} target="_blank" variant='contained'>
+                                                <TwitterIcon />
+                                            </IconButton>
+                                            : null
+                                        }
+                                        {links.youtube ?
+                                            <IconButton href={links.youtube} target="_blank" variant='contained'>
+                                                <YouTubeIcon />
+                                            </IconButton>
+                                            : null
+                                        }
                                         {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
                                         <Spotify wide link={links.spotify || 'https://open.spotify.com/artist'} />
 
