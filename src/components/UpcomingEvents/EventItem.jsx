@@ -2,6 +2,7 @@ import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions,
 import { useHistory } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
 
 const { DateTime } = require("luxon");
 
@@ -27,12 +28,28 @@ function EventItem({ concert }) {
     }
 
     const handleDelete = (concertID, userID) => {
-        console.log(concertID, userID);
-        const deleteInfo = { concertID, userID };
-        dispatch({
-            type: 'SAGA_DELETE_EVENT',
-            payload: deleteInfo
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, this Event will be removed from your Account",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Event Removed Successfully!", {
+                        icon: "success",
+                    });
+                    const deleteInfo = { concertID, userID };
+                    dispatch({
+                        type: 'SAGA_DELETE_EVENT',
+                        payload: deleteInfo
+                    })
+                } else {
+                    swal("Delete Cancelled Successfully!");
+                }
+            });
+        console.log(concertID, userID);
     }
 
     const formatTime = (datetimeString) => {

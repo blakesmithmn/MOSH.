@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
-import NoEvents from '../UpcomingEvents/NoEvents';
+import NoEvents from '../UpcomingEvents/NoEvents'
 
 function HomePage() {
 

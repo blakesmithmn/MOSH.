@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router'
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
 import MobileEdit from './MobileEdit';
+import swal from 'sweetalert';
+
 // MUI IMPORTS
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, IconButton, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -56,12 +58,22 @@ function EditProfile() {
             type: 'UPDATE_PROFILE',
             payload: profile
         })
+        swal({
+            title: "Changed Applied!",
+            text: `Profile details changed succesfully`,
+            icon: "success",
+        });
         console.log('Applied Changes! User Object is now:');
         history.push(`/profile/${user.id}`);
     }
 
     const handleCancel = (event) => {
         event.preventDefault();
+        swal({
+            title: "Changed Cancelled!",
+            text: `No changes were made`,
+            icon: "warning",
+        });
         history.push(`/profile/${user.id}`);
         console.log('Changed Abandoned!');
     }

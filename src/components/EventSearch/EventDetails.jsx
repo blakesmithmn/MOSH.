@@ -11,6 +11,8 @@ import './EventSearch.css'
 // MISC
 import Spotify from 'react-spotify-embed';
 const { DateTime } = require("luxon");
+import swal from 'sweetalert';
+
 
 // MUI IMPORTS
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue, red } from '@mui/material/colors';
@@ -79,6 +81,7 @@ function EventDetails() {
         const tickets = eventDetails.url;
         const image = eventDetails.performers[0].images.huge;
 
+
         await dispatch({
             type: 'SAGA_ADD_EVENT',
             payload: {
@@ -93,12 +96,18 @@ function EventDetails() {
                 image: image,
             }
         })
-
         await dispatch({
             type: 'SAGA_FETCH_COMMENTS',
             payload: eventID
         })
 
+        // not currently functional??
+
+        swal({
+            title: "Congrats!",
+            text: `You're Goin' to ${title} - have fun and be safe!`,
+            icon: "success",
+        });
 
     }
 
