@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 import './EventSearch.css'
 import { useHistory } from 'react-router-dom';
+const { DateTime } = require("luxon");
 
 
 
@@ -27,7 +28,10 @@ function EventSearchItem({ concert }) {
 
     }
 
-
+    const formatTime = (datetimeString) => {
+        const dt = DateTime.fromISO(datetimeString)
+        return dt.toLocaleString(DateTime.DATETIME_FULL)
+    }
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4} key={concert.id}>
@@ -52,7 +56,7 @@ function EventSearchItem({ concert }) {
                 />
                 <CardContent>
                     <Typography variant='body2'>
-                        Concert Time / Date: {concert.datetime_local}
+                        {formatTime(concert.datetime_local)}
                     </Typography>
                 </CardContent>
 

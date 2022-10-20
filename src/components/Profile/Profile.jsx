@@ -89,9 +89,14 @@ function Profile() {
                                 {profile.zipcode}
                             </Typography>
                         </Grid>
-                        <Grid item >
-                            <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
-                        </Grid>
+
+                        {/* conditional rendering for edit button */}
+                        {Number(params.id) === Number(user.id) ?
+
+                            <Grid item >
+                                <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
+                            </Grid>
+                            : null}
                     </Grid>
                 </Grid>
             </Grid>

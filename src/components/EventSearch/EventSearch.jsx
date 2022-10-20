@@ -31,32 +31,51 @@ function EventSearch() {
 
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <Typography variant='h4'>Search:</Typography>
+                    <Typography variant='h4'>Search Events, Genres, & Artists:</Typography>
                     <form onSubmit={submitSearch} className='SearchBar'>
                         <TextField
                             id='outlined-basic'
                             size='small'
-                            label='Search Events'
+                            label='Search'
                             variant='outlined'
                             value={search}
                             onChange={(event) => setSearch(event.target.value)}
-
                         />
                         <Button id='button' type='submit' variant='contained'>Search</Button>
                     </form>
                 </Grid>
 
             </Grid>
-            <h4>Concert Search Results:</h4>
-            <Grid container spacing={4}>
+            {searchResults.length > 0 ?
+                <>
+
+                    <h4>Concert Search Results:</h4>
+
+                    <Grid container spacing={4}>
 
 
-                {searchResults.map(concert => (
+                        {searchResults.map(concert => (
 
-                    <EventSearchItem concert={concert} key={concert.id} />
+                            <EventSearchItem concert={concert} key={concert.id} />
 
-                ))}
-            </Grid>
+                        ))}
+                    </Grid>
+                </>
+
+
+                :
+
+                // <Grid item xs={12}>
+                //     <Card>
+                //         <Typography variant='h4'>
+                //             Search for a Genre, Venue, or Artist!
+                //         </Typography>
+
+                //     </Card>
+                // </Grid>
+
+                null
+            }
         </>
     )
 }

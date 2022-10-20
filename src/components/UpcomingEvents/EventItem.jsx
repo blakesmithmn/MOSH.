@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch, useSelector } from 'react-redux';
 
+const { DateTime } = require("luxon");
 
 
 function EventItem({ concert }) {
@@ -34,6 +35,11 @@ function EventItem({ concert }) {
         })
     }
 
+    const formatTime = (datetimeString) => {
+        const dt = DateTime.fromISO(datetimeString)
+        return dt.toLocaleString(DateTime.DATETIME_FULL)
+    }
+
     return (
         <>
             <Card key={concert.id} className='CardDisplay'>
@@ -62,7 +68,7 @@ function EventItem({ concert }) {
                     /> */}
                 <CardContent>
                     <Typography variant='body2'>
-                        Concert Time / Date: {concert.event_datetime}
+                        {formatTime(concert.event_datetime)}
                     </Typography>
                 </CardContent>
 

@@ -10,25 +10,12 @@ function UpcomingEvents(user) {
     const events = useSelector((store) => store.events.userEvents);
 
     const dispatch = useDispatch();
-    // needs a get dispatch for user specific events
 
-    // useEffect(() => {
-    //     dispatch({
-    //         type: 'SAGA_FETCH_USER_EVENTS',
-    //         // payload: user.id
-    //     })
-    // }, []);
-
-    // SQL join from Users to USERS _ EVENTS
-    // MAP EVENT ITEMS FROM ARRAY OF UPCOMING EVENTS
-    // LINK ON ITEM TO BRING TO EVENT DETAILS PAGE
-
-
-    // on edit page maybe delete routes?
     return (
         <>
             <Typography variant='h4'>Upcoming Events:</Typography>
             <Grid container spacing={4}>
+
                 {events.map(concert => {
                     return (
                         <Grid item xs={12} sm={6} md={6} lg={4} key={concert.id}>
