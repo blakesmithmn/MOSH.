@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GETTING ALL PROFILES
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('GET /api/profiles');
     const sqlQuery = `SELECT * from "user"`
 
@@ -19,7 +22,7 @@ router.get('/', (req, res) => {
         })
 });
 // GETTING SINGLE PROFILE INFORMATION
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('GET /api/profiles/:id');
     const sqlQuery = `SELECT * from "user" WHERE id = $1`
     const sqlValues = [req.params.id];
@@ -38,7 +41,7 @@ router.get('/:id', (req, res) => {
 
 
 // SENDING UPDATED PROFILE INFORMATION TO DB
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('PUT /profile/edit/:id');
     console.log(req.body);
 

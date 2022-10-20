@@ -2,10 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 const CLIENT_KEY = process.env.CLIENT_KEY;
 
-router.get('/:artist', (req, res) => {
+router.get('/:artist', rejectUnauthenticated, (req, res) => {
     console.log('Spotify ReqParams is:', req.params.artist);
     const search = req.params.artist;
     console.log(search);

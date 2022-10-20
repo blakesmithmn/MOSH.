@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -10,7 +13,7 @@ router.get('/', (req, res) => {
     // GET route code here
 });
 
-router.get('/:eventID', (req, res) => {
+router.get('/:eventID', rejectUnauthenticated, (req, res) => {
     // GET route code here
     // console.log('EVENT ID IN COMMENTS GET IS:', req.params.eventID);
 
@@ -39,7 +42,7 @@ router.get('/:eventID', (req, res) => {
 
 
 // POST ROUTER FOR USER_COMMENTS
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
     const user = req.body.userID;
     const comment = req.body.comment;

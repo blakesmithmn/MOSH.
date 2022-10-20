@@ -3,9 +3,13 @@ const router = express.Router();
 const axios = require('axios');
 const pool = require('../modules/pool.js')
 
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
 const API_KEY = process.env.API_KEY;
 
-router.get('/:eventID', (req, res) => {
+router.get('/:eventID', rejectUnauthenticated, (req, res) => {
     let eventID = req.params.eventID;
     console.log('EVENT ID IS:', req.params.eventID);
 

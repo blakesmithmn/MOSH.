@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GET route for all Events users are currently attending - maybe for main page?
 router.get('/', (req, res) => {
@@ -8,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 // GET route for user Profiles - grabbing their specific events 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
     console.log(req.body);
     const user = req.params.id;
@@ -36,7 +39,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST TO EVENTS AND USERS_EVENTS
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const event = req.body;
     console.log('POST INFO IS:', req.body);
 
@@ -124,7 +127,7 @@ router.post('/', (req, res) => {
 
 // DELETE ROUTE FOR USERS_EVENTS
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('UserID is:', req.query.userID);
     console.log('EventID is:', req.query.concertID);
 
