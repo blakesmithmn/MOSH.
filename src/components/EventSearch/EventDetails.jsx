@@ -13,6 +13,7 @@ import Spotify from 'react-spotify-embed';
 const { DateTime } = require("luxon");
 
 // MUI IMPORTS
+import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue, red } from '@mui/material/colors';
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -101,6 +102,10 @@ function EventDetails() {
 
     }
 
+    const formatTime = (datetimeString) => {
+        const dt = DateTime.fromISO(datetimeString)
+        return dt.toLocaleString(DateTime.DATETIME_FULL)
+    }
 
     return (
         <div>
@@ -118,7 +123,9 @@ function EventDetails() {
                                 </CardActions>
                                 <CardContent>
                                     <Typography variant='h2'>{eventDetails.title}</Typography>
+                                    <Typography variant='subtitle2'>{formatTime(eventDetails.datetime_local)}</Typography>
                                     <Typography variant='body2'>{eventDetails.venue.address} {eventDetails.venue.extended_address}</Typography>
+
                                 </CardContent>
                                 <CardMedia
                                     component="img"
@@ -139,22 +146,7 @@ function EventDetails() {
                                         <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
                                     }
                                     {/* needs conditional rendering so that users can't double add an event */}
-                                    {/* {events
-                                        .filter(({ id }) => id === eventDetails.id) 
-                                        .map(event => {
-                                            {event[0] ? 
-                                            
-                                                <Button variant='contained' onClick={addToEvents} id='button' disabled>+ADD EVENT</Button>
 
-                                            :
-                                            <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
-
-                                        
-                                        }
-                                            
-
-                                        })
-                                    } */}
 
                                 </CardActions>
 
@@ -168,26 +160,26 @@ function EventDetails() {
                                         <Typography variant='h3'>LINKS & SPOTIFY</Typography>
                                         {links.homepage ?
                                             <IconButton href={links.homepage} target="_blank" variant='contained'>
-                                                <InsertLinkIcon />
+                                                <InsertLinkIcon sx={{ color: deepOrange[500] }} />
                                             </IconButton>
                                             : null
                                         }
 
                                         {links.instagram ?
                                             <IconButton href={links.instagram} target="_blank">
-                                                <InstagramIcon />
+                                                <InstagramIcon sx={{ color: pink[500] }} />
                                             </IconButton>
                                             : null
                                         }
                                         {links.twitter ?
                                             <IconButton href={links.twitter} target="_blank" variant='contained'>
-                                                <TwitterIcon />
+                                                <TwitterIcon sx={{ color: lightBlue[500] }} />
                                             </IconButton>
                                             : null
                                         }
                                         {links.youtube ?
                                             <IconButton href={links.youtube} target="_blank" variant='contained'>
-                                                <YouTubeIcon />
+                                                <YouTubeIcon sx={{ color: red[500] }} />
                                             </IconButton>
                                             : null
                                         }
