@@ -78,3 +78,15 @@ Grid
   flex-basis: 100%;
   max-width: 100%;
 }
+
+
+#background-video {
+  z-index: -1;
+  filter: blur(25px);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  /* optional depending on what you want to do in your app */
+}
