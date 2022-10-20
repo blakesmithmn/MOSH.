@@ -31,11 +31,13 @@ function RegisterForm() {
         color: color,
       },
     });
+
   }; // end registerUser
 
   const handleBack = () => {
-    history.push('/search');
+    history.push('/home/login');
   }
+
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6}>

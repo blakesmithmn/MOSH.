@@ -20,13 +20,12 @@ function LandingPage() {
   return (
     <>
       <h2>{heading}</h2>
-      <Grid container>
-        <Grid item xs={12}>
-          <video id='background-video' autoPlay loop muted>
-            <source src={crowdtestone} type='video/mp4' />
-          </video>
-          <RegisterForm />
-
+      <video id='background-video' autoPlay loop muted>
+        <source src={crowdtestone} type='video/mp4' />
+      </video>
+      <Grid container direction="column" justifyContent="center" alignItems="center" >
+        <Grid item xs={12} >
+          {/* <RegisterForm /> */}
         </Grid>
 
       </Grid>
