@@ -9,7 +9,36 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <h1>Technologies Used:</h1>
+        <ul>
+          <li>React</li>
+          <li>Material-UI</li>
+          <li>JavaScript</li>
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>Redux / Redux-Saga</li>
+          <li>SQL</li>
+          <li>3rd Party API's:
+            <ul>
+              <li>SeatGeek API for Event Details and Ticket Link / Pricing</li>
+              <li>TicketMaster API for Social Links</li>
+            </ul>
+          </li>
+          <li>SweetAlerts</li>
+          <li>HTML / CSS</li>
+        </ul>
+        <h2>Challenges / Next Steps:</h2>
+        <ul>Challenges:
+          <li>Dealing with multiple large API's to fill the niche data needed for the app</li>
+          <li>Creating a responsive product that can be used at home and on the go</li>
+        </ul>
+        <ul>Next Steps:
+          <li>Creating a function where users can 'Friend' someone and view what events they are attending</li>
+          <li>A recommended list of upcoming events on the home view per user</li>
+        </ul>
+
+        <h2>Special Thanks:</h2>
+        <p>Thanks to the L'Engle cohort, our instructor Matt, and Caffeine for making this all possible.</p>
       </div>
     </div>
   );

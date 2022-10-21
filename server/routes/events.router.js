@@ -23,7 +23,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
            ON "user".id = users_events.user_id
         JOIN events
            ON users_events.event_id = events.id
-        WHERE "user".id = $1;
+        WHERE "user".id = $1
+        ORDER BY events.event_datetime;
     `
     const sqlValues = [user];
 

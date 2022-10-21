@@ -60,6 +60,24 @@ function App() {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
+            <Route
+              // shows Login on Home Page
+              exact
+              path="/home/"
+            >
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /user page
+                <Redirect to="/user" />
+                :
+                // Otherwise, show the login page
+                <>
+                  <LandingPage />
+
+                </>
+              }
+
+            </Route>
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route

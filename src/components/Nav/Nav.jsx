@@ -20,7 +20,7 @@ function Nav() {
             <Link className="navLink" to="/home/login">
               Login / Register
             </Link>
-            <Link className="navLink" to="/info">
+            <Link className="navLink" to="/about">
               About
             </Link>
           </>
