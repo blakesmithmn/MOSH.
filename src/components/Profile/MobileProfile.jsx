@@ -72,7 +72,10 @@ function MobileProfile() {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
+                    {Number(params.id) === Number(user.id) ?
+                        <Button variant='contained' color='secondary' onClick={() => pushToEdit(user)}>EDIT PROFILE</Button>
+
+                        : null}
                 </CardActions>
             </Card>
         </Stack>
