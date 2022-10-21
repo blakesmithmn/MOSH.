@@ -29,7 +29,7 @@ function LoginForm() {
   }; // end login
 
   const sendToRegister = () => {
-    history.push('/registration');
+    history.push('/home/join');
   }
   return (
     <Grid container spacing={4}>

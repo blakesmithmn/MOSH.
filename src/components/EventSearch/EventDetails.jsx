@@ -16,7 +16,7 @@ import swal from 'sweetalert';
 
 // MUI IMPORTS
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue, red } from '@mui/material/colors';
-import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton, Stack } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
@@ -122,7 +122,7 @@ function EventDetails() {
 
                 <>
                     <Grid container >
-                        <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                        <Grid item xs={12} sm={6} md={6} lg={4}>
                             <Card className='CardDisplay'>
                                 <CardActions>
                                     <Button onClick={handleBack} color='error' edge='start' variant='contained'>
@@ -162,48 +162,50 @@ function EventDetails() {
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={6} lg={4} direction='column'>
-                            <Grid item xs={12} sm={6} md={6} lg={4} >
-                                <Card>
-                                    <CardContent>
-                                        <Typography variant='h3'>LINKS & SPOTIFY</Typography>
-                                        {links.homepage ?
-                                            <IconButton href={links.homepage} target="_blank" variant='contained'>
-                                                <InsertLinkIcon sx={{ color: deepOrange[500] }} />
-                                            </IconButton>
-                                            : null
-                                        }
+                        <Grid item xs={12} sm={6} md={6}>
+                            <Stack direction='column'>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Card>
+                                        <CardContent>
+                                            <Typography variant='h3'>LINKS & SPOTIFY</Typography>
+                                            {links.homepage ?
+                                                <IconButton href={links.homepage} target="_blank" variant='contained'>
+                                                    <InsertLinkIcon sx={{ color: deepOrange[500] }} />
+                                                </IconButton>
+                                                : null
+                                            }
 
-                                        {links.instagram ?
-                                            <IconButton href={links.instagram} target="_blank">
-                                                <InstagramIcon sx={{ color: pink[500] }} />
-                                            </IconButton>
-                                            : null
-                                        }
-                                        {links.twitter ?
-                                            <IconButton href={links.twitter} target="_blank" variant='contained'>
-                                                <TwitterIcon sx={{ color: lightBlue[500] }} />
-                                            </IconButton>
-                                            : null
-                                        }
-                                        {links.youtube ?
-                                            <IconButton href={links.youtube} target="_blank" variant='contained'>
-                                                <YouTubeIcon sx={{ color: red[500] }} />
-                                            </IconButton>
-                                            : null
-                                        }
-                                        {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
-                                        {links.spotify ?
-                                            <Spotify wide link={links.spotify || 'https://open.spotify.com/artist'} />
+                                            {links.instagram ?
+                                                <IconButton href={links.instagram} target="_blank">
+                                                    <InstagramIcon sx={{ color: pink[500] }} />
+                                                </IconButton>
+                                                : null
+                                            }
+                                            {links.twitter ?
+                                                <IconButton href={links.twitter} target="_blank" variant='contained'>
+                                                    <TwitterIcon sx={{ color: lightBlue[500] }} />
+                                                </IconButton>
+                                                : null
+                                            }
+                                            {links.youtube ?
+                                                <IconButton href={links.youtube} target="_blank" variant='contained'>
+                                                    <YouTubeIcon sx={{ color: red[500] }} />
+                                                </IconButton>
+                                                : null
+                                            }
+                                            {/* SPOTIFY EMBEDS THROUGH A REACT HOOK - JUST NEED SPOTIFY API TO REQUEST THE ARTIST URL */}
+                                            {links.spotify ?
+                                                <Spotify wide link={links.spotify || 'https://open.spotify.com/artist'} />
 
-                                            : null
-                                        }
+                                                : null
+                                            }
 
 
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6} lg={4} key={eventDetails.id}>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Stack>
+                            <Grid item xs={12} sm={6} md={6}>
                                 <Comments eventID={eventDetails.id} />
                             </Grid>
                         </Grid>

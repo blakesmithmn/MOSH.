@@ -24,7 +24,7 @@ function HomePage() {
   return (
     <div className="container">
       <h2>Welcome, {user.first_name}!</h2>
-      <p>Your ID is: {user.id}</p>
+      {/* <p>Your ID is: {user.id}</p> */}
       {events.length > 0 ?
 
         <UpcomingEvents user={user} />

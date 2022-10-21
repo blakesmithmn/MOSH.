@@ -2,10 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 const API_KEY = process.env.API_KEY;
 
-router.get('/:query', (req, res) => {
+router.get('/:query', rejectUnauthenticated, (req, res) => {
     console.log('ReqParams is:', req.query.zipcode);
     let search = req.params.query;
     console.log('SEARCH IS:', req.query.search);

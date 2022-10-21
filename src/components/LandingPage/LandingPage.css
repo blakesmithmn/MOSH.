@@ -9,8 +9,8 @@ Grid
   flex-direction: row;
   flex-wrap: wrap;
   /* defaults to 'flex-start' */
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-col {
@@ -77,4 +77,31 @@ Grid
 .grid-col_12 {
   flex-basis: 100%;
   max-width: 100%;
+}
+
+
+#background-video {
+  z-index: -1;
+  filter: blur(25px);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  /* optional depending on what you want to do in your app */
+}
+
+.homedisplay {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+
+
+}
+
+.homelogo {
+  z-index: 0;
 }

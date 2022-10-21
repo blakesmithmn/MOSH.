@@ -17,6 +17,15 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  const autoFill = () => {
+    setUsername('optimusprime');
+    setPassword('orioles');
+    setFirstName('Optimus');
+    setLastName('Prime');
+    setZipcode(55416);
+    setColor('orange');
+  }
+
   const registerUser = (event) => {
     event.preventDefault();
     console.log(color);
@@ -31,17 +40,19 @@ function RegisterForm() {
         color: color,
       },
     });
+
   }; // end registerUser
 
   const handleBack = () => {
-    history.push('/search');
+    history.push('/home/login');
   }
+
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6}>
         <Card className='CardForm'>
           <CardContent>
-            <Typography gutterBottom variant="h5">Create an Account</Typography>
+            <Typography gutterBottom variant="h5" onClick={autoFill}>Create an Account</Typography>
             <Typography gutterBottom color="textSecondary" variant="body2" component="p">Complete this form to get started.</Typography>
             <form onSubmit={registerUser}>
               <Grid container spacing={2}>

@@ -60,6 +60,24 @@ function App() {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
+            <Route
+              // shows Login on Home Page
+              exact
+              path="/home/"
+            >
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /user page
+                <Redirect to="/user" />
+                :
+                // Otherwise, show the login page
+                <>
+                  <LandingPage />
+
+                </>
+              }
+
+            </Route>
 
             {/* Visiting localhost:3000/about will show the about page. */}
             <Route
@@ -68,6 +86,43 @@ function App() {
               path="/about"
             >
               <AboutPage />
+            </Route>
+
+            <Route
+              // shows Login on Home Page
+              exact
+              path="/home/login"
+            >
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /user page
+                <Redirect to="/user" />
+                :
+                // Otherwise, show the login page
+                <>
+                  <LandingPage />
+                  <LoginPage />
+                </>
+              }
+
+            </Route>
+
+            <Route
+              // shows Create Account on Home Page
+              exact
+              path="/home/join"
+            >
+              {user.id ?
+                // If the user is already logged in, 
+                // redirect to the /user page
+                <Redirect to="/user" />
+                :
+                // Otherwise, show the login page
+                <>
+                  <LandingPage />
+                  <RegisterPage />
+                </>
+              }
             </Route>
 
             {/* For protected routes, the view could show one of several things on the same route.
