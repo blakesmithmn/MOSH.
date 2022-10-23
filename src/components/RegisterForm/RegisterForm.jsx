@@ -20,8 +20,8 @@ function RegisterForm() {
   const autoFill = () => {
     setUsername('optimusprime');
     setPassword('orioles');
-    setFirstName('Optimus');
-    setLastName('Prime');
+    setFirstName('Prime');
+    setLastName('Student');
     setZipcode(55416);
     setColor('orange');
   }

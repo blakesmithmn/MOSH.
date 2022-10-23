@@ -2,26 +2,20 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
 
 function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
-      <RegisterForm />
+    <Grid container direction="row" justifyContent="center" alignItems="center">
+      <Grid item xs={12}>
+        <RegisterForm />
+      </Grid>
+    </Grid>
 
-      <center>
-        {/* <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </button> */}
-      </center>
-    </div>
+
+
   );
 }
 
