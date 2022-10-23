@@ -24,7 +24,7 @@ import EventDetails from '../EventSearch/EventDetails';
 import Profile from '../Profile/Profile';
 import EditProfile from '../Profile/EditProfile';
 import MobileNav from '../MobileNav/MobileNav';
-
+import Logo from '../LandingPage/Logo'
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -72,6 +72,7 @@ function App() {
                 :
                 // Otherwise, show the login page
                 <>
+                  <Logo />
                   <LandingPage />
 
                 </>

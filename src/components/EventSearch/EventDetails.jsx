@@ -121,8 +121,8 @@ function EventDetails() {
             {eventDetails.id &&
 
                 <>
-                    <Grid container >
-                        <Grid item xs={12} sm={6} md={6} lg={4}>
+                    <Grid container spacing={4} direction="row" justifyContent="center" alignItems="center">
+                        <Grid item xs={12} sm={6} md={6} lg={4} className='DetailsContainer'>
                             <Card className='CardDisplay'>
                                 <CardActions>
                                     <Button onClick={handleBack} color='error' edge='start' variant='contained'>
@@ -162,12 +162,12 @@ function EventDetails() {
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={6}>
+                        <Grid item xs={12} sm={6} md={8}>
                             <Stack direction='column'>
-                                <Grid item xs={12} sm={6} md={6}>
-                                    <Card>
+                                <Grid item xs={12} sm={6} md={8} >
+                                    <Card className='SocialLinks'>
                                         <CardContent>
-                                            <Typography variant='h3'>LINKS & SPOTIFY</Typography>
+                                            <Typography variant='h3'>SOCIAL LINKS:</Typography>
                                             {links.homepage ?
                                                 <IconButton href={links.homepage} target="_blank" variant='contained'>
                                                     <InsertLinkIcon sx={{ color: deepOrange[500] }} />
@@ -205,13 +205,13 @@ function EventDetails() {
                                     </Card>
                                 </Grid>
                             </Stack>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={6} md={8} className='CommentSection'>
                                 <Comments eventID={eventDetails.id} />
                             </Grid>
                         </Grid>
                     </Grid>
-                    <p>event id:{eventDetails.id}</p>
-                    <p>ARTIST ID for DETAILS / EVENTUAL SPOTIFY LINK: {eventDetails.performers[0].id}</p>
+                    {/* <p>event id:{eventDetails.id}</p>
+                    <p>ARTIST ID for DETAILS / EVENTUAL SPOTIFY LINK: {eventDetails.performers[0].id}</p> */}
                 </>
             }
 

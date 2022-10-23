@@ -77,6 +77,7 @@ function EditProfile() {
         history.push(`/profile/${user.id}`);
         console.log('Changed Abandoned!');
     }
+
     return (
         <>
             <Grid container spacing={10} className='profileHeader' justifyContent="center">

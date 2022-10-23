@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Avatars from '../Avatar/Avatar';
+import './Comments.css'
+
 
 function Comments({ eventID }) {
     // user state - [{},{}]
@@ -51,9 +53,9 @@ function Comments({ eventID }) {
             <CardContent>
                 <Typography variant='h2'>COMMENTS</Typography>
             </CardContent>
-            <CardContent>
+            <CardContent className='comment'>
                 {comments.map(commentItem => (
-                    <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
+                    <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)} >
 
                         <Avatars username={commentItem} />
 
