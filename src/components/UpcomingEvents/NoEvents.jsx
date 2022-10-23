@@ -15,7 +15,7 @@ function NoEvents() {
                         No Events Yet
                     </Typography>
                     <Typography>
-                        Let's head on over to <Button onClick={pushSearch}>SEARCH</Button> to find some!
+                        Let's head on over to <Button onClick={pushSearch} sx={{ color: 'red' }}>SEARCH</Button> to find some!
                     </Typography>
                 </Card>
             </Grid>

@@ -9,7 +9,7 @@ import qrcode from './qrcode.JPG';
 
 function AboutPage() {
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={4} alignItems="flex-start">
       <Grid item xs={12} md={2}>
         <Card>
           <CardMedia component='img' image={photo} />
