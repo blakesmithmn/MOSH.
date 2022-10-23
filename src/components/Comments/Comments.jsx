@@ -57,7 +57,7 @@ function Comments({ eventID }) {
                 <Grid container direction='column' className='comments' spacing={2}>
                     <Grid item xs={12}>
                         {comments.map(commentItem => (
-                            <Stack direction='row' ml={-9} spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}
+                            <Stack direction='row' ml={-9} mb={2} spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}
                                 justifyContent="flex-start"
                                 alignItems="flex-start">
 

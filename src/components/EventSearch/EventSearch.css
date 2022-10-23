@@ -1,9 +1,9 @@
-.DetailsContainer {
+.detailcard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
-
 }
 
 .CardDisplay {

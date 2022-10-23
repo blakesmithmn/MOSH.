@@ -121,8 +121,9 @@ function EventDetails() {
             {eventDetails.id &&
 
                 <>
-                    <Grid container spacing={4} className='detailsContainer'>
-                        <Grid item xs={12} sm={6} md={4} lg={4} className='DetailsContainer'>
+                    <Grid container spacing={4} className='detailsContainer' ml={{ sm: 0, md: 15 }}>
+
+                        <Grid item xs={12} sm={6} md={4} lg={4}>
                             <Card className='CardDisplay'>
                                 <CardActions>
                                     <Button onClick={handleBack} color='error' edge='start' variant='contained'>
