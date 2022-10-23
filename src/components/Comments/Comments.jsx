@@ -53,16 +53,22 @@ function Comments({ eventID }) {
             <CardContent>
                 <Typography variant='h2'>COMMENTS</Typography>
             </CardContent>
-            <CardContent className='comment'>
-                {comments.map(commentItem => (
-                    <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)} >
+            <CardContent >
+                <Grid container direction='column' className='comments' spacing={2}>
+                    <Grid item xs={12}>
+                        {comments.map(commentItem => (
+                            <Stack direction='row' ml={-9} spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}
+                                justifyContent="flex-start"
+                                alignItems="flex-start">
 
-                        <Avatars username={commentItem} />
+                                <Avatars username={commentItem} />
 
-                        <Typography component='span'>{commentItem.comment}</Typography>
+                                <Typography component='span'>{commentItem.comment}</Typography>
 
-                    </Stack>
-                ))}
+                            </Stack>
+                        ))}
+                    </Grid>
+                </Grid>
             </CardContent>
             <CardContent>
                 <form onSubmit={handleCommentPost}>
