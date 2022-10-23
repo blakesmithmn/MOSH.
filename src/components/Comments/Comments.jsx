@@ -73,7 +73,7 @@ function Comments({ eventID }) {
             <CardContent>
                 <form onSubmit={handleCommentPost}>
                     <TextField size='small' placeholder='Write a comment ...' fullWidth onChange={(event) => setComment(event.target.value)} value={comment}></TextField>
-                    <Button variant='contained' color='secondary' type='submit'>Submit</Button>
+                    <Button variant='contained' color='secondary' type='submit' sx={{ margin: 1 }}>Submit</Button>
                 </form>
             </CardContent>
         </Card>

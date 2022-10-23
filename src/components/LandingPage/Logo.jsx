@@ -10,7 +10,7 @@ function Logo() {
         <>
             <img src={moshlogo} id='homelogo' />
             <Grid item>
-                <Button variant='contained' onClick={() => history.push('/home/login')}>ENTER</Button>
+                <Button variant='contained' sx={{ 'background-color': '#FFFFFF', color: '#000000' }} onClick={() => history.push('/home/login')}>ENTER</Button>
             </Grid>
         </>
     )
