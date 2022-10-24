@@ -1,5 +1,7 @@
 import React from 'react';
-
+import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, Avatar, Stack, ListItem, ListItemText, List } from '@mui/material';
+import photo from './me.jpg';
+import qrcode from './qrcode.JPG';
 // This is one of our simplest components
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -7,40 +9,99 @@ import React from 'react';
 
 function AboutPage() {
   return (
-    <div className="container">
-      <div>
-        <h1>Technologies Used:</h1>
-        <ul>
-          <li>React</li>
-          <li>Material-UI</li>
-          <li>JavaScript</li>
-          <li>Node.js</li>
-          <li>Express</li>
-          <li>Redux / Redux-Saga</li>
-          <li>SQL</li>
-          <li>3rd Party API's:
-            <ul>
-              <li>SeatGeek API for Event Details and Ticket Link / Pricing</li>
-              <li>TicketMaster API for Social Links</li>
-            </ul>
-          </li>
-          <li>SweetAlerts</li>
-          <li>HTML / CSS</li>
-        </ul>
-        <h2>Challenges / Next Steps:</h2>
-        <ul>Challenges:
-          <li>Dealing with multiple large API's to fill the niche data needed for the app</li>
-          <li>Creating a responsive product that can be used at home and on the go</li>
-        </ul>
-        <ul>Next Steps:
-          <li>Creating a function where users can 'Friend' someone and view what events they are attending</li>
-          <li>A recommended list of upcoming events on the home view per user</li>
-        </ul>
+    <Grid container spacing={4} alignItems="flex-start">
+      <Grid item xs={12} md={2}>
+        <Card>
+          <CardMedia component='img' image={photo} />
+          <Typography variant='h4'>Special Thanks:</Typography>
+          <Typography>Thanks to everyone in the L'Engle cohort, our Instructor Matt, the support staff here at Prime, and Caffeine for making this all possible.</Typography>
+        </Card>
 
-        <h2>Special Thanks:</h2>
-        <p>Thanks to the L'Engle cohort, our instructor Matt, and Caffeine for making this all possible.</p>
-      </div>
-    </div>
+
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Card>
+
+          <Typography variant='h3'>Technologies Used:</Typography>
+          <List>
+            <ListItem>
+              <ListItemText primary='React' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='Material-UI' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='JavaScript' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='Node.js' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='Express' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='Redux & Redux-Saga' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='PostgreSQL' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="3rd Party API's from SeatGeek & TicketMaster" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='SweetAlerts' />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary='HTML/CSS' />
+            </ListItem>
+          </List>
+
+
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Card>
+          <Typography variant='h3'> Challenges & Next Steps:</Typography>
+          <CardContent>
+            <List>
+              <ListItem>
+                <ListItemText primary="Dealing with multiple large API's to fill the niche data needed for the app" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Creating a responsive product that can be used at home and on the go" />
+              </ListItem>
+            </List>
+
+            <List>
+              <ListItem>
+                <ListItemText primary="Adding functionality so users can 'Friend' someone and view what events they are attending" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="A recommended list of upcoming events on the home view per user" />
+              </ListItem>
+            </List>
+
+
+
+
+          </CardContent>
+        </Card>
+
+      </Grid>
+
+
+      <Grid item xs={12} md={2}>
+        <Card>
+          <Typography variant='h4'>LinkedIn</Typography>
+          <Typography>If you have any questions about the project, or my next steps feel free to connect with me on LinkedIn!</Typography>
+          <CardMedia component='img' image={qrcode} />
+        </Card>
+      </Grid>
+    </Grid>
+
+
+
+
   );
 }
 

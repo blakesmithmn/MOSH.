@@ -4,5 +4,8 @@ body {
     /* background: rgb(2, 2, 11);
     background: linear-gradient(180deg, rgba(2, 2, 11, 1) 64%, rgba(116, 82, 150, 1) 100%);
     background-attachment: fixed; */
+    background-color: #121314;
+    background-image: linear-gradient(43deg, #121314 0%, #C850C0 46%, #FFCC70 100%);
+    background-attachment: fixed;
     text-align: center;
 }

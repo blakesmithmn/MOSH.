@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import Avatars from '../Avatar/Avatar';
+import './Comments.css'
+
 
 function Comments({ eventID }) {
     // user state - [{},{}]
@@ -51,21 +53,27 @@ function Comments({ eventID }) {
             <CardContent>
                 <Typography variant='h2'>COMMENTS</Typography>
             </CardContent>
-            <CardContent>
-                {comments.map(commentItem => (
-                    <Stack direction='row' spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}>
+            <CardContent >
+                <Grid container direction='column' className='comments' spacing={2}>
+                    <Grid item xs={12}>
+                        {comments.map(commentItem => (
+                            <Stack direction='row' ml={-9} mb={2} spacing={1} key={commentItem.id} onClick={() => profilePush(commentItem.user_id)}
+                                justifyContent="flex-start"
+                                alignItems="flex-start">
 
-                        <Avatars username={commentItem} />
+                                <Avatars username={commentItem} />
 
-                        <Typography component='span'>{commentItem.comment}</Typography>
+                                <Typography component='span'>{commentItem.comment}</Typography>
 
-                    </Stack>
-                ))}
+                            </Stack>
+                        ))}
+                    </Grid>
+                </Grid>
             </CardContent>
             <CardContent>
                 <form onSubmit={handleCommentPost}>
                     <TextField size='small' placeholder='Write a comment ...' fullWidth onChange={(event) => setComment(event.target.value)} value={comment}></TextField>
-                    <Button variant='contained' color='secondary' type='submit'>Submit</Button>
+                    <Button variant='contained' color='secondary' type='submit' sx={{ margin: 1 }}>Submit</Button>
                 </form>
             </CardContent>
         </Card>

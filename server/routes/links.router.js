@@ -18,6 +18,7 @@ router.get('/:artist', rejectUnauthenticated, (req, res) => {
         .then((searchRes => {
             // const spotifyURL = searchRes.data._embedded.events[0]._embedded.attractions[0].externalLinks.spotify[0]
             const linkResults = searchRes.data._embedded.events[0]._embedded.attractions[0].externalLinks;
+            const image = searchRes.data._embedded.events[0].images[4]
             // console.log('SPOTIFY URL IS:', spotifyURL);
             console.log('EXTERNAL LINKS:', linkResults);
             const links = {};
@@ -35,6 +36,9 @@ router.get('/:artist', rejectUnauthenticated, (req, res) => {
             }
             if (linkResults.spotify) {
                 links.spotify = linkResults.spotify[0].url
+            }
+            if (image.url) {
+                links.image = image.url;
             }
             console.log('EXTERNAL LINKS READY TO SEND:', links);
             // IF WE WANT TO ADD EXTERNAL LINKS - DOES IT MAKE MORE SENSE TO CHECK IF THEY EXIST HERE??

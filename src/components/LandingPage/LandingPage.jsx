@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import crowdtestone from './crowdtestone.mp4'
-import moshlogo from './moshlogolight.png'
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+import Logo from './Logo';
 
 // MUI IMPORTS
 import { Paper, Card, CardContent, Typography, Button, ButtonGroup, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container, IconButton } from '@mui/material';
@@ -20,14 +20,12 @@ function LandingPage() {
   return (
     <>
       {/* <h2>{heading}</h2> */}
-      <img src={moshlogo} id='homelogo' />
+
       <video id='background-video' autoPlay loop muted>
         <source src={crowdtestone} type='video/mp4' />
       </video>
       <Grid column-spacing={2}>
-        <Grid item>
-          <Button variant='contained' onClick={() => history.push('/home/login')}>ENTER</Button>
-        </Grid>
+
 
       </Grid>
       <Grid container direction="column" justifyContent="center" alignItems="center" >

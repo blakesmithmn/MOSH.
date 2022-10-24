@@ -3,3 +3,8 @@
     height: 200px;
     font-size: 100;
 }
+
+.MuiAvatar-root {
+    border: 2px white solid;
+
+}

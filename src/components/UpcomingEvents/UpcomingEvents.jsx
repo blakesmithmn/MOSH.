@@ -13,7 +13,7 @@ function UpcomingEvents(user) {
 
     return (
         <>
-            <Typography variant='h4'>Upcoming Events:</Typography>
+            <Typography variant='h4' sx={{ color: "#FFFFFF" }}>Upcoming Events:</Typography>
             <Grid container spacing={4}>
 
                 {events.map(concert => {
