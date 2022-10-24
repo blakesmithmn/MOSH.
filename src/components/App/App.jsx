@@ -222,8 +222,9 @@ function App() {
             </Route>
           </Switch>
           <Footer />
-          <MobileNav />
-
+          {user.id && (
+            <MobileNav />
+          )}
         </div>
       </Router>
     </ThemeProvider>
