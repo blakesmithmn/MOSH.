@@ -31,7 +31,7 @@ function EventSearch() {
 
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <Typography variant='h4' sx={{ color: '#FFFFFF' }}>Search Venues, Events, Genres, & Artists:</Typography>
+                    <Typography variant='h4' sx={{ color: '#FFFFFF' }}>Search Events, Venues, Genres, & Artists:</Typography>
                     <form onSubmit={submitSearch} className='SearchBar'>
                         <TextField
                             id='outlined-basic'
