@@ -4,21 +4,10 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
--- DANGER ~ DROP TABLES RIHT HERE
-DROP TABLE "event_comments";
-DROP TABLE "comments";
-DROP TABLE "events";
-DROP TABLE "friends";
-DROP TABLE "genres";
-DROP TABLE "users_genres";
-DROP TABLE "users_events";
-DROP TABLE "user";
 
 
 
 
-
--- TABLE FOR USERS HAVING THEIR OWN INFO
 CREATE TABLE "user"(
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -34,9 +23,9 @@ CREATE TABLE "user"(
 	"updated_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-
 -- EVENTS TABLE
--- STILL NEEDS DATEIME STUFF
+-- STILL NEEDS DATETIME
+
 CREATE TABLE "events" (
 	"id" INT NOT NULL PRIMARY KEY,
 	"image" VARCHAR NOT NULL,
@@ -51,6 +40,8 @@ CREATE TABLE "events" (
 );
 
 -- USER / EVENTS JUNCTION TABLE
+
+
 CREATE TABLE "users_events" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INT REFERENCES "user" NOT NULL,
@@ -58,7 +49,6 @@ CREATE TABLE "users_events" (
   "status" BOOLEAN DEFAULT FALSE
 );
 
--- EVENT COMMENTS TABLE PER EVENT
 CREATE TABLE "event_comments" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" NOT NULL,
@@ -68,21 +58,18 @@ CREATE TABLE "event_comments" (
 	"updated_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- NOT YET IMPLEMENETED
 CREATE TABLE "friends"(
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" NOT NULL,
 	"friend_id" INT REFERENCES "user" NOT NULL,
 	"friend_status" BOOLEAN DEFAULT FALSE
 	);
-
--- NOT YET IMPLEMENTED
+	
 CREATE TABLE "genres"(
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR NOT NULL
 	);
-
--- NOT YET IMPLEMENTED
+	
 CREATE TABLE "users_genres"(
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" NOT NULL,
@@ -90,51 +77,63 @@ CREATE TABLE "users_genres"(
 	);
 
 
--- -- want user.id user.
--- SELECT * from "user"
---          JOIN users_events
---                 ON "user".id = users_events.user_id
---          JOIN events
---                 ON users_events.event_id = events.id
---             WHERE "user".id = 6;
+-- want user.id user.
+SELECT * from "user"
+         JOIN users_events
+                ON "user".id = users_events.user_id
+         JOIN events
+                ON users_events.event_id = events.id
+            WHERE "user".id = 6;
             
             
--- SELECT * from "events"
---             WHERE events."API_key" = 5825128;
+SELECT * from "events"
+            WHERE events."API_key" = 5825128;
             
--- DELETE from "users_events"
---             WHERE "event_id" = 13 AND "user_id" = 6;
+DELETE from "users_events"
+            WHERE "event_id" = 13 AND "user_id" = 6;
             
             
--- SELECT * from "event_comments"
--- 		JOIN "user"
--- 			ON user_id = "user".id
--- 		JOIN "events" 
--- 			ON event_id = "events".id
--- 		WHERE "API_key" = 5723791;
+SELECT * from "event_comments"
+		JOIN "user"
+			ON user_id = "user".id
+		JOIN "events" 
+			ON event_id = "events".id
+		WHERE "API_key" = 5723791;
 
--- INSERT INTO "event_comments"
--- 	("user_id", "event_id", "comment")
--- 	VALUES
--- 	('6','5825128','test comment from Blake - love the knocks!'),
--- 	('7','5825128','comment from test dummy ... cant make it to the knocks');
+INSERT INTO "event_comments"
+	("user_id", "event_id", "comment")
+	VALUES
+	('6','5825128','test comment from Blake - love the knocks!'),
+	('7','5825128','comment from test dummy ... cant make it to the knocks');
 
--- SELECT "user_id", "event_id", "status" FROM "events"
--- 	JOIN "users_events"
--- 		ON events.id = users_events.event_id
--- 	JOIN "user"
--- 		ON users_events.id = "user".id
--- 	WHERE users_events.event_id = 5659749;
+SELECT "user_id", "event_id", "status" FROM "events"
+	JOIN "users_events"
+		ON events.id = users_events.event_id
+	JOIN "user"
+		ON users_events.id = "user".id
+	WHERE users_events.event_id = 5659749;
 
-
-
--- HERE IS THE EXAMPLE QUERY I'M RUNNING SERVERSIDE WHERE IM HAVING ISSUES
--- THE ID COMES FROM THE API
--- WHEN ADDING A NEW EVENT I CAN'T GET THE STATUS TO UPDATE
-
--- SELECT "user_id", "event_id", "status" FROM "events"
---                 JOIN "users_events"
---                     ON events.id = users_events.event_id
---                 JOIN "user"
---                     ON users_events.id = "user".id
---             WHERE users_events.event_id = 5825128 AND users_events.user_id = 1 AND status=true;
+-- SQL CHECKING EVENT STATUS 
+SELECT "user_id", "event_id", "status" FROM "users_events"
+                JOIN "user"
+                    ON users_events.user_id = "user".id
+            WHERE users_events.event_id = 5830427 AND users_events.user_id = 1;
+            
+SELECT "user_id", "event_id", "status" FROM "user"
+	JOIN "users_events"
+		ON "user".id = users_events.user;
+		
+SELECT "user_id", "event_id", "comment", "username", "first_name","last_name","color" from "event_comments"
+		JOIN "user"
+			ON user_id = "user".id
+		JOIN "events" 
+			ON event_id = "events".id
+		WHERE "events".id = 5679907;
+		
+SELECT * from "user"
+        JOIN users_events
+           ON "user".id = users_events.user_id
+        JOIN events
+           ON users_events.event_id = events.id
+        WHERE "user".id = 1
+        ORDER BY events.event_datetime;
