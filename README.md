@@ -55,7 +55,7 @@ With this project being a much larger workload than previous projects in my expe
 
 In order to keep on track - I tried to keep a continuous planner filled with tasks and their completion status:
 
-  ![](/ScreenShots/Planner.png)
+  ![](/ScreenShots/Planner.PNG)
 
 As a representation of the planning spent on this project - I have included the scope document. This process involved spending time considering user flow, component structure, and design potential for the application. This experience also involved setting a timeline for certain features and was an interesting first venture into estimating development time.
 
