@@ -35,6 +35,9 @@ MOSH. is a social platform built to connect users based on shared music interest
 I built this app to be responsive for Mobile or Desktop view - anticipating a users needs to use the product in different environments.
 
   
+![](/ScreenShots/Home.png)
+
+
 
 This project was built in its entirety over the course of two weeks as a part of [Prime Digital Academy](www.primeacademy.io).
 
