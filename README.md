@@ -1,121 +1,213 @@
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+![REPO SIZE](https://img.shields.io/github/repo-size/blakesmithmn/MOSH.?style=flat-square)
 
-## Use the Template for This Repository (Don't Clone)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/blakesmithmn/MOSH.?style=flat-square)
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+![FORKS](https://img.shields.io/github/forks/blakesmithmn/MOSH.?style=social)
 
+  
+  
 
-## Prerequisites
+# MOSH.
 
-Before you get started, make sure you have the following software installed on your computer:
+  
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+_Duration: Two Week Sprint_
 
-## Create database and table
+  
 
-Create a new database called `prime_app` and create a `user` table:
+MOSH. is a social platform built to connect users based on shared music interest - in an effort to help people find their next concert going companion. Making friends as an adult is tough - it's even harder to find the time to do things  together! Attending concerts alone is never quite as fun ... MOSH. is here to help!
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
+I built this app to be responsive for Mobile or Desktop view - anticipating a users needs to use the product in different environments. 
+
+This project was built in its entirety over the course of two weeks as a part of [Prime Digital Academy](www.primeacademy.io).
+
+  
+
+## Approach
+
+  
+
+With this project being a much larger workload than previous projects in my experience, I started the development process through thorough planning. We spend a good chunk of time scoping the project, and setting up a timeline.
+
+ As a representation of the planning spent on this project - I have included the scope document. This process involved spending time considering user flow, component structure, and design potential for the application. This experience also involved setting a timeline for certain features and was an interesting first venture into estimating development time. 
+ 
+[Scope Document with Wireframes](https://docs.google.com/document/d/1pbcPLlckRQuP1xbaCUsxnUh4Vuuz3gLM1_c-j4q54FA/edit?usp=sharing)
+  
+
+If you would like to see a draft of the database structure created during scoping - I have included the relevant ERD. This shows how the tables interact with one another and gives context to functions within the program.
+
+[Entity-Relationship Diagram](https://app.dbdesigner.net/designer/schema/563565)
+
+  
+
+## Getting Started
+
+  
+
+### Prerequisites
+
+- React.js *(built on version 17.0.2)*
+
+- Keys for SeatGeek & TicketMaster API's
+
+- DotEnv
+
+-  [Node.js](https://nodejs.org/en/)
+
+- Axios
+
+- Redux
+
+- Redux-Saga
+
+-  [Material.UI](https://mui.com)
+
+- Express
+
+- Body-Parser
+
+- 'PG'
+
+- Database Manager
+
+  
+
+### Installation
+
+  
+
+Using your package manager - install the dependencies
+
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+$ ~ npm install
 
-## Development Setup Instructions
+```
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+  
 
-## Debugging
+In your database manager - use the provided database.sql file to create the necessary tables for this project.
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+  
+  
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+With your database set up - start the server.
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+```
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+$ ~ npm run server
 
-## Testing Routes with Postman
+```
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+With the server running - open another terminal window and start your client.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+Navigate to http://localhost:3000 if the run client script doesn't automatically open the application.
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+```
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+$ ~ npm run client
 
-## Production Build
+```
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+  
 
 ## Deployment
 
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+  
 
-## Update Documentation
+Add additional notes about how to deploy this on a live system
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+  
+
+## Built With
+
+  
+
+*  [React.js](http://www.dropwizard.io/1.0.2/docs/)
+
+*  [Material-UI](https://maven.apache.org/) - components and styling
+
+*  [SeatGeek API](https://platform.seatgeek.com) - Used to generate and search events / event details.
+
+*  [TicketMaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/) - Used to generate Social Links
+
+  
+  
+  
+  
+
+## Acknowledgments
+
+  
+
+* Hat tip to anyone whose code was used
+
+* Inspiration
+
+* etc
+
+  
+
+## Screen Shots
+
+All screenshots available in the [Wireframes](https://github.com/blakesmithmn/weekend-movie-sagas/tree/main/wireframes)
+
+![](wireframe.png)
+
+  
+  
+
+## Usage
+
+This application is meant to serve as a tool for users to find Concerts in their local vicinity and interact with other users:
+
+1. Using the provided movies on the home page - `click` the movie of your choice to see the details.
+
+2. Once done, navigate back to the home page using either the navigation bar - or the provided `back` button.
+
+3. If you wish to add your own movie - navigate to `search` using the provided navigation bar.
+
+4. In the search form - enter the movie title to search the Movie Database API.
+
+5. Use the `Add to Favorites` button to add the movie of your choice to the Movielist!
+
+6. If you wish to share a movie with your friends - the detail view of each movie should link them directly!
+
+  
+  
+
+## Developer Notes
+
+  
+
+Given the opportunity to revisit this project - I would love to expand the social capabilities of the app, allowing users to 'Add Friends' as well as 'Search Friends'.
+
+  
+
+On top of that, I would like to implement functionality to recommend events based on a users history, as well as their friends activity on the platform.
+
+  
+  
+
+## Acknowledgement
+
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
+
+  
+
+Thanks to [SeatGeek](https://platform.seatgeek.com) whose API supplied information for multiple parts of this application, including the majority of event details and the ticketing information.
+
+  
+
+Thanks to [TicketMaster](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/) for providing access to their API - which supplied information for multiple parts of this application, including the social links section allowing for an embedded Spotify web player.
