@@ -43,7 +43,7 @@ function SearchBar() {
                 <TextField
                     id='outlined-basic'
                     size='small'
-                    label='Search'
+                    label='Search Events & Genres'
                     variant='outlined'
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
