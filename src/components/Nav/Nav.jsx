@@ -4,6 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 
 // MUI IMPORTS
+import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import { Avatar, AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, Button } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -30,9 +31,28 @@ function Nav(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const getUserColor = (user) => {
+    switch (user.color) {
+      case 'pink':
+        return pink[500];
+      case 'deepPurple':
+        return deepPurple[500];
+      case 'indigo':
+        return indigo[500];
+      case 'teal':
+        return teal[500];
+      case 'green':
+        return green[500];
+      case 'orange':
+        return orange[500];
+      case 'lightBlue':
+        return lightBlue[500];
+    }
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Avatar sx={{ width: 250, height: 250, ml: 8, my: 1 }} />
+      <Avatar sx={{ bgcolor: getUserColor(user), width: 150, height: 150, fontSize: 75, my: 2 }}>{user.id && <p>{user.first_name[0]}</p>} {user.id && <p>{user.last_name[0]}</p>}</Avatar>
       <Divider />
       <List>
 
@@ -101,18 +121,10 @@ function Nav(props) {
             <Typography
               variant="h4"
               component="div"
-              sx={{ flexGrow: 1, pb: 0.5, display: { xs: 'none', sm: 'block' } }}
+              sx={{ flexGrow: 1, pb: 0.5, display: { xs: 'none', sm: 'block' }, textAlign: 'start', color: 'white' }}
             >
-              {/* CONDITIONAL RENDERING FOR APPBAR TITLE */}
-              {/* {location.pathname === '/user' ? 'Home' : null}
-              {location.pathname === '/profile' ? 'Profile' : null}
-              {location.pathname === '/' ? 'Pack Leaders' : null}
-              {location.pathname === '/invoice' ? 'Invoice Tool' : null}
-              {location.pathname === '/schedule' ? 'Employee Schedule' : null}
-              {location.pathname === '/resetpass' ? 'Account' : null} */}
 
-              {/* END CONDITIONAL RENDERING */}
-
+              MOSH.
 
 
             </Typography>
