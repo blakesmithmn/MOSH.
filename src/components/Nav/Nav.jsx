@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+
+// COMPONENTS & CSS
 import LogOutButton from '../LogOutButton/LogOutButton';
+import SearchBar from '../EventSearch/SearchBar';
+
+
 
 // MUI IMPORTS
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
-import Box from '@mui/material/Box';
-import { Avatar, AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, Button } from '@mui/material';
+import { Box, InputBase, Avatar, AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, Button } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import MessagesIcon from '@mui/icons-material/Forum';
@@ -20,7 +22,6 @@ const drawerWidth = 350;
 const navItems = ['Home', 'Profile', 'Event Search', 'Messages'];
 
 function Nav(props) {
-  const location = useLocation();
   const history = useHistory();
   const user = useSelector((store) => store.user);
 
@@ -128,17 +129,16 @@ function Nav(props) {
 
 
             </Typography>
-            <Box sx={{ display: { xs: 'none', sm: 'none' } }}>
+            {/* <Box sx={{ display: { xs: 'none', sm: 'none' } }}>
               {navItems.map((item) => (
                 <Button key={item} sx={{ color: '#fff' }}>
                   {item}
                 </Button>
               ))}
-            </Box>
+            </Box> */}
+            <SearchBar sx={{ m: 2 }} />
           </Toolbar>
         )}
-        {/*----------NAV TRANSITION----------*/}
-
       </AppBar>
 
       {/*----------SIDE MENU----------*/}
