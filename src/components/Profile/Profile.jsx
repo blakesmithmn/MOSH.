@@ -74,18 +74,18 @@ function Profile() {
                 <Grid item xs sm container sx={{ display: { xs: 'none', sm: 'none', md: 'inline' } }}>
                     <Grid item xs container direction="column" spacing={4}>
                         <Grid item xs>
-                            <Typography gutterBottom variant="h3" component="div">
+                            <Typography gutterBottom variant="h3" component="div" sx={{ color: 'white' }}>
                                 {profile.first_name} {profile.last_name}
                             </Typography>
-                            <Typography variant="subtitle2" gutterBottom>
+                            <Typography variant="subtitle2" gutterBottom sx={{ color: 'white' }}>
                                 {profile.username}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary" sx={{ color: 'white' }}>
                                 {profile.about_me}
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography variant="subtitle1" component="div" className='zipcode'>
+                            <Typography variant="subtitle1" component="div" className='zipcode' sx={{ color: 'white' }}>
                                 {profile.zipcode}
                             </Typography>
                         </Grid>

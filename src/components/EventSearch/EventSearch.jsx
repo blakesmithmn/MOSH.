@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+
+// COMPONENTS & CSS
 import EventSearchItem from './EventSearchItem';
-import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
+import SearchBar from './SearchBar';
 import './EventSearch.css'
+
+// MUI IMPORTS
+import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 
 
 function EventSearch() {
@@ -31,18 +36,9 @@ function EventSearch() {
 
             <Grid container spacing={4}>
                 <Grid item xs={12}>
-                    <Typography variant='h4' sx={{ color: '#FFFFFF' }}>Search Events, Venues, Genres, & Artists:</Typography>
-                    <form onSubmit={submitSearch} className='SearchBar'>
-                        <TextField
-                            id='outlined-basic'
-                            size='small'
-                            label='Search'
-                            variant='outlined'
-                            value={search}
-                            onChange={(event) => setSearch(event.target.value)}
-                        />
-                        <Button id='button' type='submit' variant='contained'>Search</Button>
-                    </form>
+                    <SearchBar />
+                    <Button onClick={(event) => submitSearch(event)}>Search</Button>
+
                 </Grid>
 
             </Grid>

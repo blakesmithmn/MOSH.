@@ -1,5 +1,9 @@
 import React from 'react';
 import './Footer.css';
+import { Button, Link } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -7,8 +11,14 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy;
-    <a href="https://github.com/blakesmithmn" target='_'>Blake Smith</a>
+  const history = useHistory();
+  const sendToGithub = () => {
+    window.open('https://github.com/blakesmithmn')
+  }
+  return <footer>
+    <Button onClick={sendToGithub} sx={{ color: 'white' }}>
+      &copy;  Blake Smith
+    </Button>
   </footer>;
 }
 
