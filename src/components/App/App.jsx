@@ -20,7 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import EventSearch from '../EventSearch/EventSearch';
-import EventDetails from '../EventSearch/EventDetails';
+import EventDetails from '../EventDetails/EventDetails';
 import Profile from '../Profile/Profile';
 import EditProfile from '../Profile/EditProfile';
 import MobileNav from '../MobileNav/MobileNav';

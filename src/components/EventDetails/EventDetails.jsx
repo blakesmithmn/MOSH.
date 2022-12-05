@@ -4,9 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import EventSearchItem from './EventSearchItem';
-import Comments from '../Comments/Comments';
-import './EventSearch.css'
+import EventSearchItem from '../EventSearch/EventSearchItem';
+import Comments from './Comments/Comments';
 
 // MISC
 import Spotify from 'react-spotify-embed';
@@ -22,6 +21,8 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import DirectionsIcon from '@mui/icons-material/Directions';
+
 
 
 
@@ -36,7 +37,7 @@ function EventDetails() {
     const eventDetails = useSelector((store) => store.details);
     const links = useSelector((store) => store.links);
 
-    const events = useSelector((store) => store.events.userEvents);
+    const events = useSelector((store) => store.events);
 
     // LOCAL STATE
     const [eventStatus, setEventStatus] = useState(false);
@@ -117,14 +118,17 @@ function EventDetails() {
     }
 
     return (
-        <div>
-            {eventDetails.id &&
+        <>
 
-                <>
-                    <Grid container spacing={4} className='detailsContainer' ml={{ sm: 0, md: 15 }}>
 
-                        <Grid item xs={12} sm={6} md={4} lg={4}>
-                            <Card className='CardDisplay'>
+            <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                {
+                    eventDetails.id && links &&
+
+                    <>
+
+                        <Grid item xs={12} sm={6} md={5}>
+                            <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', pb: 2, pt: 2 }}>
                                 <CardActions>
                                     <Button onClick={handleBack} color='error' edge='start' variant='contained'>
                                         <ArrowBackIosNewIcon />
@@ -139,7 +143,8 @@ function EventDetails() {
                                 </CardContent>
                                 <CardMedia
                                     component="img"
-                                    image={eventDetails.performers[0].images.huge}
+                                    // image={links.images[0].url || eventDetails.performers[0].images.huge}
+                                    // image={eventDetails.performers[0].images.huge}
                                     alt={eventDetails.title}
                                     sx={{ width: .75 }}
                                 />
@@ -155,7 +160,6 @@ function EventDetails() {
                                         :
                                         <Button variant='contained' onClick={addToEvents} id='button' >+ADD EVENT</Button>
                                     }
-                                    {/* needs conditional rendering so that users can't double add an event */}
 
 
                                 </CardActions>
@@ -163,8 +167,8 @@ function EventDetails() {
                             </Card>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={8}>
-                            <Grid item xs={12} sm={6} md={8} >
+                        <Grid item xs={12} sm={6} md={5} >
+                            <Stack>
                                 <Card className='SocialLinks'>
                                     <CardContent>
                                         <Typography variant='h3'>SOCIAL LINKS:</Typography>
@@ -203,18 +207,17 @@ function EventDetails() {
 
                                     </CardContent>
                                 </Card>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={8} className='CommentSection'>
-                                <Comments eventID={eventDetails.id} />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    {/* <p>event id:{eventDetails.id}</p>
-                    <p>ARTIST ID for DETAILS / EVENTUAL SPOTIFY LINK: {eventDetails.performers[0].id}</p> */}
-                </>
-            }
 
-        </div >)
+                                <Comments eventID={eventDetails.id} />
+                            </Stack>
+
+                        </Grid>
+                    </>
+                }
+            </Grid>
+
+        </>
+    )
 }
 
 

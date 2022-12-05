@@ -4,6 +4,7 @@ import EventSearchItem from './EventSearchItem';
 import { Paper, Card, CardContent, Typography, Button, CardActions, Box, Grid, CardMedia, FormGroup, TextField, Container } from '@mui/material';
 // import './EventSearch.css'
 import { useHistory, useLocation } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 
@@ -47,6 +48,7 @@ function SearchBar() {
                     variant='outlined'
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
+                    sx={{ color: 'white' }}
                 />
             </form>
 

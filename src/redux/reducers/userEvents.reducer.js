@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 // separate these out into separate reducer files
 const userEvents = (state = [], action) => {
     switch (action.type) {
@@ -12,6 +11,4 @@ const userEvents = (state = [], action) => {
 
 
 
-export default combineReducers({
-    userEvents,
-});
+export default userEvents;
