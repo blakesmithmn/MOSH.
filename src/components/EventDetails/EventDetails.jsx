@@ -37,7 +37,7 @@ function EventDetails() {
     const eventDetails = useSelector((store) => store.details);
     const links = useSelector((store) => store.links);
 
-    const events = useSelector((store) => store.events.userEvents);
+    const events = useSelector((store) => store.events);
 
     // LOCAL STATE
     const [eventStatus, setEventStatus] = useState(false);
