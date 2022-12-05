@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@mui/material/colors';
-import Avatars from '../Avatar/Avatar';
+import Avatars from '../../Avatar/Avatar';
 import './Comments.css'
 
 
