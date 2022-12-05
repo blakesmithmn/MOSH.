@@ -7,7 +7,7 @@ import EventItem from './EventItem';
 function UpcomingEvents(user) {
     const params = useParams();
     // const user = useSelector((store) => store.user);
-    const events = useSelector((store) => store.events.userEvents);
+    const events = useSelector((store) => store.events);
 
     const dispatch = useDispatch();
 

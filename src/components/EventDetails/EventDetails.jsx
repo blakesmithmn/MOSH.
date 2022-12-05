@@ -123,7 +123,7 @@ function EventDetails() {
 
             <Grid container spacing={4} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 {
-                    eventDetails.id &&
+                    eventDetails.id && links &&
 
                     <>
 
@@ -143,7 +143,8 @@ function EventDetails() {
                                 </CardContent>
                                 <CardMedia
                                     component="img"
-                                    image={eventDetails.performers[0].images.huge}
+                                    // image={links.images[0].url || eventDetails.performers[0].images.huge}
+                                    // image={eventDetails.performers[0].images.huge}
                                     alt={eventDetails.title}
                                     sx={{ width: .75 }}
                                 />

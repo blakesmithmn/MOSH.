@@ -7,6 +7,7 @@ import eventSaga from './event.saga';
 import profileSaga from './profile.saga';
 import commentsSaga from './comments.saga';
 import detailsSaga from './details.saga';
+import colorSaga from './userColor.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -24,5 +25,7 @@ export default function* rootSaga() {
     profileSaga(),
     commentsSaga(),
     detailsSaga(),
+    colorSaga(),
+
   ]);
 }

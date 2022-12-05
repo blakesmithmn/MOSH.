@@ -8,7 +8,6 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
 
-import Avatars from '../Avatar/Avatar';
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
 
 function MobileEdit() {
