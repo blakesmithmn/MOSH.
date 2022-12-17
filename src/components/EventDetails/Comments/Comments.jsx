@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { deepOrange, deepPurple } from '@mui/material/colors';
-import Avatars from '../../ProfilePhoto/ProfilePhoto';
+import ProfilePhoto from '../../ProfilePhoto/ProfilePhoto';
 import './Comments.css'
 
 
@@ -61,7 +61,7 @@ function Comments({ eventID }) {
                                 justifyContent="flex-start"
                                 alignItems="flex-start">
 
-                                <Avatars username={commentItem} />
+                                <ProfilePhoto username={commentItem} />
 
                                 <Typography component='span'>{commentItem.comment}</Typography>
 

@@ -35,9 +35,9 @@ function EventSearch() {
 
 
             <Grid container spacing={4}>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                     <SearchBar />
-                    <Button onClick={(event) => submitSearch(event)}>Search</Button>
+                    {/* <Button onClick={(event) => submitSearch(event)}>Search</Button> */}
 
                 </Grid>
 
