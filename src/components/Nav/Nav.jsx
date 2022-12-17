@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 // COMPONENTS & CSS
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -9,8 +10,9 @@ import SearchBar from '../EventSearch/SearchBar';
 
 
 // MUI IMPORTS
+import { styled, alpha } from '@mui/material/styles';
 import { deepOrange, deepPurple, teal, pink, indigo, orange, green, lightBlue } from '@mui/material/colors';
-import { Box, InputBase, Avatar, AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, Button } from '@mui/material';
+import { Stack, Box, InputBase, Avatar, AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, Button } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -18,10 +20,59 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import MessagesIcon from '@mui/icons-material/Forum';
 
+
 const drawerWidth = 350;
 const navItems = ['Home', 'Profile', 'Event Search', 'Messages'];
 
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  color: 'black',
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '8ch',
+      '&:focus': {
+        width: '34ch',
+      },
+    },
+  },
+}));
+
+
 function Nav(props) {
+  const [search, setSearch] = useState('');
+
+  const dispatch = useDispatch();
+
   const history = useHistory();
   const user = useSelector((store) => store.user);
 
@@ -103,6 +154,22 @@ function Nav(props) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const submitSearch = (event) => {
+    // event.preventDefault();
+    dispatch({
+      type: 'SAGA_SEARCH_EVENTS',
+      payload: { search: search, zipcode: user.zipcode }
+    })
+    setSearch('');
+    history.push('/search')
+  }
+
+  const keyPress = (event) => {
+    if (event.keyCode === 13) {
+      submitSearch()
+    }
+  }
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <AppBar component="nav" position='sticky' sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, mb: 2 }}>
@@ -136,7 +203,25 @@ function Nav(props) {
                 </Button>
               ))}
             </Box> */}
-            <SearchBar sx={{ m: 2 }} />
+            <Box sx={{ backgroundColor: 'white', borderRadius: 3 }}>
+              <Stack direction='row'>
+                <Search onKeyDown={(event) => keyPress(event)}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                    placeholder="Search ... Events, Genres & Venues"
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </Search>
+                {/* <SearchBar sx={{ mt: -2 }} />
+                <SearchIcon /> */}
+
+              </Stack>
+
+            </Box>
           </Toolbar>
         )}
       </AppBar>
