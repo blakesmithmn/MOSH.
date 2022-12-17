@@ -16,7 +16,7 @@ function UpcomingEvents(user) {
             <Typography variant='h4' sx={{ color: "#FFFFFF" }} mb={1}>Upcoming Events:</Typography>
             <Grid container spacing={4}>
 
-                {events.map(concert => {
+                {events[0] && events.map(concert => {
                     return (
                         <Grid item xs={12} sm={6} md={6} lg={4} key={concert.id}>
                             <Card>

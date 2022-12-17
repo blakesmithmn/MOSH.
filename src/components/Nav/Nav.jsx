@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // COMPONENTS & CSS
 import LogOutButton from '../LogOutButton/LogOutButton';
 import SearchBar from '../EventSearch/SearchBar';
+import ProfilePhoto from '../ProfilePhoto/ProfilePhoto';
 
 
 

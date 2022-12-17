@@ -8,7 +8,7 @@ import './Avatar.css'
 // and grab the color they set on registration ... and display it as the color for their avatar
 // so I tried making a custom avatar component. 
 
-function Avatars({ username }) {
+function ProfilePhoto({ username }) {
     const getUserColor = (username) => {
         switch (username.color) {
             case 'pink':
@@ -35,4 +35,4 @@ function Avatars({ username }) {
     )
 }
 
-export default Avatars;
+export default ProfilePhoto;

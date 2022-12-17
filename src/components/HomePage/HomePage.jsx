@@ -30,7 +30,6 @@ function HomePage() {
       {events.length > 0 ?
 
         <UpcomingEvents user={user} />
-
         :
         <NoEvents />
       }
